@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Git Center App
 
-## Getting Started
+This is a Full Stack application built to easily manage your Github repositories.
 
-First, run the development server:
+## Features
+
+- Login with Github
+- List all User Repositories
+- List all issues and Pull Requests from repositories
+- Show last commit from repositories
+- List commits from repositories
+- Allow users to comment issues and Pull Requests
+- Allow users to close or reopen issues
+- Allow users to create new issues
+- Allow users to merge or close Pull Requests
+
+## Techs
+
+- Next.js - A React framework for building full-stack web applications
+- Next Auth - An authentication solution for Next.js applications
+- Tailwind CSS - A CSS framework for rapidly building modern websites without ever leaving your HTML
+
+## Contributing
+
+This project is open to contribution. If you want to contribute, feel free to create new Pull Requests, fix bugs, add new features or improve documentation.
+
+**How to contribute**
+
+1. Fork this repository
+2. Create a new branch for your contribution
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+    git checkout -b minha-contribuicao
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. Do your changes and add descritive commits
+4. Create a pull request to the `master` branch of this repository
