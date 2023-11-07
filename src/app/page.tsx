@@ -4,7 +4,7 @@ import { GithubIcon } from 'lucide-react'
 
 export default function Home() {
 	return (
-		<main className='flex min-h-screen flex-col'>
+		<main className='flex min-h-screen flex-col w-full'>
 			{/* Icon will act as background image for the page */}
 			<GithubIcon className='absolute w-full h-full opacity-25 -z-10' />
 
