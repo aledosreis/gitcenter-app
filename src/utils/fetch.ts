@@ -1,5 +1,6 @@
 import {
 	GithubRepoResponse,
+	GithubRepositoryCommitsResponse,
 	GithubUserReposResponse,
 	GithubUserResponse,
 } from '@/@types/github'
@@ -32,5 +33,17 @@ export async function getRepositoryData(
 		// 'https://api.github.com/repos/{owner}/{repo}'
 		`${BASE_API_URL}repos/${owner}/${repository}`
 	)
+	return response.json()
+}
+
+export async function getRepositoryCommits(
+	user: string,
+	repository: string
+): Promise<GithubRepositoryCommitsResponse> {
+	const response = await fetch(
+		// 'https://api.github.com/repos/{user}/{repo}/commits'
+		`${BASE_API_URL}repos/${user}/${repository}/commits`
+	)
+
 	return response.json()
 }

@@ -41,3 +41,28 @@ export interface GithubRepoResponse {
  * Response type for the endpoint https://api.github.com/users/{user}/repos
  */
 export type GithubUserReposResponse = GithubRepoResponse[]
+
+interface GithubRepositoryCommitResponse {
+	sha: string
+	commit: {
+		author: {
+			name: string
+			email: string
+			date: string
+		}
+		committer: {
+			name: string
+			email: string
+			date: string
+		}
+		message: string
+	}
+	html_url: string
+	author: GithubUserResponse
+	committer: GithubUserResponse
+}
+
+/**
+ * Response type for the endpoint https://api.github.com/repos/{user}/{repo}/commits
+ */
+export type GithubRepositoryCommitsResponse = GithubRepositoryCommitResponse[]
