@@ -7,6 +7,8 @@ export interface GithubUserResponse {
 	html_url: string
 	repos_url: string
 	name: string
+	company: string | null
+	blog: string | null
 	location: string | null
 	email: string | null
 	bio: string | null
