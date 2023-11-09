@@ -112,9 +112,9 @@ export default async function DashboardPage() {
 				</Link>
 			</div>
 
-			{user.bio && (
-				<span className='text-zinc-300 italic w-full'>{user.bio}</span>
-			)}
+			<span className='text-zinc-300 italic w-full'>
+				{user.bio || "You didn't wrote nothing in your Github profile bio"}
+			</span>
 
 			<div className='w-full h-px bg-zinc-500' />
 
