@@ -3,7 +3,7 @@ import { LogOut } from 'lucide-react'
 
 export function Sidebar() {
 	return (
-		<aside className='flex flex-col justify-between min-h-screen w-52 bg-zinc-900 border-r border-zinc-600 px-3 py-4'>
+		<aside className='fixed flex flex-col justify-between h-screen w-52 bg-zinc-900 border-r border-zinc-600 px-3 py-4'>
 			<div className='flex flex-col gap-4 w-full items-center'>
 				<h1 className='font-bold text-lg'>GitCenter</h1>
 

@@ -5,7 +5,7 @@ export default function UserLayout({ children }: { children: ReactNode }) {
 	return (
 		<>
 			<Sidebar />
-			<main className='flex-1 p-4 w-screen'>{children}</main>
+			<main className='ml-52 flex-1 p-4 w-screen'>{children}</main>
 		</>
 	)
 }
