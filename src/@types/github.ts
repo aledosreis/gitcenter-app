@@ -1,5 +1,8 @@
 /**
- * Response type for the endpoint https://api.github.com/users/{user}
+ * Github User data response type
+ * Endpoint: https://api.github.com/users/{user}
+ * Endpoint: https://api.github.com/users/{user}/followers will return user array
+ * Endpoint: https://api.github.com/users/{user}/following will return user array
  */
 export interface UserResponse {
 	login: string
@@ -19,7 +22,9 @@ export interface UserResponse {
 }
 
 /**
- * Response type for the endpoint https://api.github.com/repos/{owner}/{repository}
+ * Github repository data response type
+ * Endpoint: https://api.github.com/repos/{owner}/{repository} for single repository
+ * Endpoint: https://api.github.com/users/{user}/repos/ will return repositories array
  */
 export interface RepoResponse {
 	id: number
@@ -40,11 +45,11 @@ export interface RepoResponse {
 }
 
 /**
- * Response type for the endpoint https://api.github.com/users/{user}/repos
+ * Github Commit data response type
+ * Endpoint: https://api.github.com/repos/{user}/{repo}/commits/{sha} for single commit
+ * Endpoint: https://api.github.com/repos/{user}/{repo}/commits will return commit array
  */
-export type ReposResponse = RepoResponse[]
-
-interface RepositoryCommitResponse {
+export interface RepositoryCommitResponse {
 	sha: string
 	commit: {
 		author: {
@@ -63,14 +68,3 @@ interface RepositoryCommitResponse {
 	author: UserResponse
 	committer: UserResponse
 }
-
-/**
- * Response type for the endpoint https://api.github.com/repos/{user}/{repo}/commits
- */
-export type RepositoryCommitsResponse = RepositoryCommitResponse[]
-
-/**
- * Response type for the endpoint https://api.github.com/users/{user}/followers
- * And https://api.github.com/users/{user}/following
- */
-export type FollowersResponse = UserResponse[]

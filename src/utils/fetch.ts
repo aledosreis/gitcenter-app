@@ -1,8 +1,6 @@
 import {
-	FollowersResponse,
 	RepoResponse,
-	ReposResponse,
-	RepositoryCommitsResponse,
+	RepositoryCommitResponse,
 	UserResponse,
 } from '@/@types/github'
 
@@ -16,7 +14,7 @@ export async function getUserData(user: string): Promise<UserResponse> {
 	return response.json()
 }
 
-export async function getRepositories(user: string): Promise<ReposResponse> {
+export async function getRepositories(user: string): Promise<RepoResponse[]> {
 	const response = await fetch(
 		// 'https://api.github.com/users/{user}/repos{?type,page,per_page,sort}'
 		`${BASE_API_URL}users/${user}/repos`
@@ -38,7 +36,7 @@ export async function getRepositoryData(
 export async function getRepositoryCommits(
 	user: string,
 	repository: string
-): Promise<RepositoryCommitsResponse> {
+): Promise<RepositoryCommitResponse[]> {
 	const response = await fetch(
 		// 'https://api.github.com/repos/{user}/{repo}/commits'
 		`${BASE_API_URL}repos/${user}/${repository}/commits`
@@ -47,9 +45,7 @@ export async function getRepositoryCommits(
 	return response.json()
 }
 
-export async function getUserFollowers(
-	user: string
-): Promise<FollowersResponse> {
+export async function getUserFollowers(user: string): Promise<UserResponse[]> {
 	const response = await fetch(
 		// 'https://api.github.com/users/{user}/followers'
 		`${BASE_API_URL}users/${user}/followers`
@@ -58,9 +54,7 @@ export async function getUserFollowers(
 	return response.json()
 }
 
-export async function getUserFollowing(
-	user: string
-): Promise<FollowersResponse> {
+export async function getUserFollowing(user: string): Promise<UserResponse[]> {
 	const response = await fetch(
 		// 'https://api.github.com/users/{user}/following'
 		`${BASE_API_URL}users/${user}/following`
