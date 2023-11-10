@@ -1,13 +1,9 @@
-import { GithubRepoResponse } from '@/@types/github'
+import { RepoResponse } from '@/@types/github'
 import { getRepositoryCommits } from '@/utils/fetch'
 import { BookMarkedIcon } from 'lucide-react'
 import Link from 'next/link'
 
-export async function Repository({
-	repository,
-}: {
-	repository: GithubRepoResponse
-}) {
+export async function Repository({ repository }: { repository: RepoResponse }) {
 	const commits = await getRepositoryCommits('octocat', repository.name)
 	const lastCommit = commits.at(0)
 	const commitMessage = lastCommit?.commit.message
