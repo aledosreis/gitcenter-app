@@ -1,7 +1,7 @@
 /**
  * Response type for the endpoint https://api.github.com/users/{user}
  */
-export interface GithubUserResponse {
+export interface UserResponse {
 	login: string
 	avatar_url: string
 	html_url: string
@@ -21,7 +21,7 @@ export interface GithubUserResponse {
 /**
  * Response type for the endpoint https://api.github.com/repos/{owner}/{repository}
  */
-export interface GithubRepoResponse {
+export interface RepoResponse {
 	id: number
 	name: string
 	html_url: string
@@ -36,15 +36,15 @@ export interface GithubRepoResponse {
 	homepage: string
 	language: string
 	visibility: string
-	parent?: GithubRepoResponse
+	parent?: RepoResponse
 }
 
 /**
  * Response type for the endpoint https://api.github.com/users/{user}/repos
  */
-export type GithubUserReposResponse = GithubRepoResponse[]
+export type ReposResponse = RepoResponse[]
 
-interface GithubRepositoryCommitResponse {
+interface RepositoryCommitResponse {
 	sha: string
 	commit: {
 		author: {
@@ -60,11 +60,17 @@ interface GithubRepositoryCommitResponse {
 		message: string
 	}
 	html_url: string
-	author: GithubUserResponse
-	committer: GithubUserResponse
+	author: UserResponse
+	committer: UserResponse
 }
 
 /**
  * Response type for the endpoint https://api.github.com/repos/{user}/{repo}/commits
  */
-export type GithubRepositoryCommitsResponse = GithubRepositoryCommitResponse[]
+export type RepositoryCommitsResponse = RepositoryCommitResponse[]
+
+/**
+ * Response type for the endpoint https://api.github.com/users/{user}/followers
+ * And https://api.github.com/users/{user}/following
+ */
+export type FollowersResponse = UserResponse[]
