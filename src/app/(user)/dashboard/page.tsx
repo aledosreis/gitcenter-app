@@ -1,4 +1,5 @@
-import { getUserData } from '@/utils/fetch'
+import Avatar from '@/components/Avatar'
+import { getUserData, getUserFollowers, getUserFollowing } from '@/utils/fetch'
 import {
 	BookMarkedIcon,
 	BuildingIcon,
@@ -9,27 +10,21 @@ import {
 	SquareCodeIcon,
 	Users2Icon,
 } from 'lucide-react'
-import Image from 'next/image'
 import Link from 'next/link'
 
 export default async function DashboardPage() {
 	const user = await getUserData('octocat')
+	const followers = await getUserFollowers('octocat')
+	const following = await getUserFollowing('octocat')
 
 	return (
 		<div className='w-full flex flex-col gap-5 py-5 px-3'>
 			<div className='flex w-full justify-between items-center'>
 				<div className='flex gap-2 items-center'>
-					<Image
-						alt={user.name}
-						src={user.avatar_url}
-						width={0}
-						height={0}
-						sizes='100vw'
-						className='h-14 w-14 object-contain rounded-full'
-					/>
+					<Avatar user={user} />
 
 					<div className='flex flex-col'>
-						<h2 className='text-2xl font-extrabold'>
+						<h2 className='text-xl font-extrabold'>
 							Hello, <span className='text-violet-500'>{user.name}</span>
 						</h2>
 						<span className='text-zinc-300 text-lg'>@{user.login}</span>
@@ -84,7 +79,7 @@ export default async function DashboardPage() {
 					<div className='flex gap-1'>
 						<BookMarkedIcon />
 						<span className='text-zinc-300'>
-							{user.public_repos} public repositories
+							{user.public_repos} public repos
 						</span>
 					</div>
 					<div className='flex gap-1'>
@@ -106,7 +101,7 @@ export default async function DashboardPage() {
 				<Link
 					href={user.html_url}
 					target='_blank'
-					className='flex items-center gap-1'>
+					className='flex items-center gap-1 border px-2 py-1 rounded-md'>
 					<GithubIcon />
 					Go to Github
 				</Link>
@@ -118,12 +113,43 @@ export default async function DashboardPage() {
 
 			<div className='w-full h-px bg-zinc-500' />
 
-			<div className='w-full bg-zinc-900 p-2 rounded-md grid grid-cols-2'>
-				<span>a</span>
-				<span>a</span>
-				<span>a</span>
-				<div>
-					<pre>{JSON.stringify(user, null, 2)}</pre>
+			<div className='w-full bg-zinc-900 p-5 rounded-md grid grid-cols-2 gap-5'>
+				{/* Followers Card */}
+				<div className='flex flex-col gap-3 items-center bg-zinc-800 rounded-md p-3'>
+					<span className='self-start text-lg font-semibold'>
+						Followers{' '}
+						<span className='font-normal text-base italic'>
+							(shows max 10 followers)
+						</span>
+					</span>
+					<div className='flex gap-1'>
+						{followers.slice(0, 10).map((follower) => (
+							<Avatar
+								key={follower.name}
+								user={follower}
+								className='h-10 w-10 border'
+							/>
+						))}
+					</div>
+				</div>
+
+				{/* Following Card */}
+				<div className='flex flex-col gap-3 items-center bg-zinc-800 rounded-md p-3'>
+					<span className='self-start text-lg font-semibold'>
+						Following{' '}
+						<span className='font-normal text-base italic'>
+							(shows max 10 following)
+						</span>
+					</span>
+					<div className='flex gap-1'>
+						{following.slice(0, 10).map((follow) => (
+							<Avatar
+								key={follow.name}
+								user={follow}
+								className='h-10 w-10 border'
+							/>
+						))}
+					</div>
 				</div>
 			</div>
 
