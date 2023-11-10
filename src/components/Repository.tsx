@@ -11,7 +11,7 @@ export async function Repository({ repository }: { repository: RepoResponse }) {
 	return (
 		<Link
 			href={`/repositories/${repository.id}`}
-			className='flex items-center justify-between border border-zinc-400 py-2 px-4 mx-5'>
+			className='flex items-center justify-between bg-zinc-900 border border-zinc-600 py-2 px-4 mx-5'>
 			<div className='flex gap-3 items-center'>
 				<BookMarkedIcon />
 				<div className='flex flex-col w-96'>
