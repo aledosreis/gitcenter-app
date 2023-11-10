@@ -1,4 +1,6 @@
 import Avatar from '@/components/Avatar'
+import { FollowsCard } from '@/components/FollowsCard'
+import { Separator } from '@/components/Separator'
 import { getUserData, getUserFollowers, getUserFollowing } from '@/utils/fetch'
 import {
 	BookMarkedIcon,
@@ -117,50 +119,24 @@ export default async function DashboardPage() {
 				</span>
 			</div>
 
-			<div className='w-full h-px bg-zinc-500' />
+			<Separator />
 
-			<div className='w-full bg-zinc-900 p-5 rounded-md grid grid-cols-2 gap-5'>
+			{/* Cards */}
+			<div className='w-full bg-zinc-900 p-5 rounded-md flex gap-5'>
 				{/* Followers Card */}
-				<div className='flex flex-col gap-3 items-center bg-zinc-800 rounded-md p-3'>
-					<span className='self-start text-lg font-semibold'>
-						Followers{' '}
-						<span className='font-normal text-base italic'>
-							(shows max 10 followers)
-						</span>
-					</span>
-					<div className='flex gap-1'>
-						{followers.slice(0, 10).map((follower) => (
-							<Avatar
-								key={follower.name}
-								user={follower}
-								className='h-10 w-10 border'
-							/>
-						))}
-					</div>
-				</div>
+				<FollowsCard
+					type='followers'
+					users={followers}
+				/>
 
 				{/* Following Card */}
-				<div className='flex flex-col gap-3 items-center bg-zinc-800 rounded-md p-3'>
-					<span className='self-start text-lg font-semibold'>
-						Following{' '}
-						<span className='font-normal text-base italic'>
-							(shows max 10 following)
-						</span>
-					</span>
-					<div className='flex gap-1'>
-						{following.slice(0, 10).map((follow) => (
-							<Avatar
-								key={follow.name}
-								user={follow}
-								className='h-10 w-10 border'
-							/>
-						))}
-					</div>
-				</div>
+				<FollowsCard
+					type='following'
+					users={following}
+				/>
 			</div>
 
-			{/* Commit graph */}
-			{/* Repositories List (5 max) */}
+			<Separator />
 		</div>
 	)
 }
