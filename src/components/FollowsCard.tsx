@@ -16,13 +16,13 @@ export function FollowsCard({
 					(shows max 10 {type})
 				</span>
 			</span>
-			<div className='flex gap-1'>
+			<div className='flex -space-x-2 overflow-hidden'>
 				{users.length > 0 ? (
 					users.slice(0, 10).map((user) => (
 						<Avatar
 							key={user.login}
 							user={user}
-							className='h-10 w-10 border'
+							className='h-10 w-10 border '
 						/>
 					))
 				) : (
