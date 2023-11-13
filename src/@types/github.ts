@@ -29,6 +29,7 @@ export interface UserResponse {
 export interface RepoResponse {
 	id: number
 	name: string
+	full_name: string
 	html_url: string
 	description: string
 	fork: boolean
