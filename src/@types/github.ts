@@ -42,7 +42,10 @@ export interface RepoResponse {
 	homepage: string
 	language: string
 	visibility: string
+	forks: number
+	watchers: number
 	parent?: RepoResponse
+	subscribers_count: number
 }
 
 /**
