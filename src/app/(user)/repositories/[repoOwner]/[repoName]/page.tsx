@@ -1,5 +1,5 @@
 import { Separator } from '@/components/Separator'
-import { getRepositoryData } from '@/utils/fetch'
+import { getRepositoryCommits, getRepositoryData } from '@/utils/fetch'
 import {
 	Code2Icon,
 	EyeIcon,
@@ -15,6 +15,8 @@ export default async function RepositoryPage({
 	params: { repoOwner: string; repoName: string }
 }) {
 	const repoData = await getRepositoryData(params.repoOwner, params.repoName)
+	const commits = await getRepositoryCommits(params.repoOwner, params.repoName)
+	const lastCommit = commits.at(0)
 
 	return (
 		<div className='flex flex-col gap-5 px-1'>
@@ -59,13 +61,30 @@ export default async function RepositoryPage({
 					</Link>
 				</div>
 
+				{/* Repo Description */}
 				<span className='text-zinc-300 italic w-full'>
 					{repoData.description || "This repository hasn't any description."}
 				</span>
 			</div>
 
 			<Separator />
-			<pre>{JSON.stringify(repoData, null, 2)}</pre>
+
+			{/* Last commit */}
+			<div className='flex justify-between rounded-md bg-zinc-800 py-2 px-4 mx-2'>
+				<span>
+					Last commit:{' '}
+					<span className='text-zinc-300 italic'>
+						{lastCommit?.commit.message}
+					</span>{' '}
+					by {lastCommit?.author.login} at {lastCommit?.commit.author.date}
+				</span>
+				{/* Will be a link later */}
+				<span>{commits.length} commits</span>
+			</div>
+
+			<Separator />
+
+			<pre>{JSON.stringify(commits, null, 2)}</pre>
 		</div>
 	)
 }
