@@ -6,6 +6,10 @@ import {
 
 const BASE_API_URL = 'https://api.github.com/'
 
+/**
+ * Fetch data from Github user
+ * @param user username from a Github user
+ */
 export async function getUserData(user: string): Promise<UserResponse> {
 	const response = await fetch(
 		// 'https://api.github.com/users/{user}'
@@ -14,6 +18,10 @@ export async function getUserData(user: string): Promise<UserResponse> {
 	return response.json()
 }
 
+/**
+ * Fech all repositories owned by a Github user
+ * @param user  username from a Github User
+ */
 export async function getRepositories(user: string): Promise<RepoResponse[]> {
 	const response = await fetch(
 		// 'https://api.github.com/users/{user}/repos{?type,page,per_page,sort}'
@@ -22,6 +30,11 @@ export async function getRepositories(user: string): Promise<RepoResponse[]> {
 	return response.json()
 }
 
+/**
+ * Fetch data from a specific repository
+ * @param owner username from the repository's owner
+ * @param repository name of the repository
+ */
 export async function getRepositoryData(
 	owner: string,
 	repository: string
@@ -33,6 +46,11 @@ export async function getRepositoryData(
 	return response.json()
 }
 
+/**
+ * Fetch all commits from a repository
+ * @param user username from the repository's owner
+ * @param repository name of the repository
+ */
 export async function getRepositoryCommits(
 	user: string,
 	repository: string
@@ -45,6 +63,10 @@ export async function getRepositoryCommits(
 	return response.json()
 }
 
+/**
+ * Fetch followers from Github user
+ * @param user username from a Github user
+ */
 export async function getUserFollowers(user: string): Promise<UserResponse[]> {
 	const response = await fetch(
 		// 'https://api.github.com/users/{user}/followers'
@@ -54,6 +76,10 @@ export async function getUserFollowers(user: string): Promise<UserResponse[]> {
 	return response.json()
 }
 
+/**
+ * Fetch following from Github user
+ * @param user username from a Github user
+ */
 export async function getUserFollowing(user: string): Promise<UserResponse[]> {
 	const response = await fetch(
 		// 'https://api.github.com/users/{user}/following'
