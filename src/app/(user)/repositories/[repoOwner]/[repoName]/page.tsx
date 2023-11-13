@@ -1,6 +1,12 @@
 import { Separator } from '@/components/Separator'
 import { getRepositoryData } from '@/utils/fetch'
-import { EyeIcon, GitForkIcon, GithubIcon, StarIcon } from 'lucide-react'
+import {
+	Code2Icon,
+	EyeIcon,
+	GitForkIcon,
+	GithubIcon,
+	StarIcon,
+} from 'lucide-react'
 import Link from 'next/link'
 
 export default async function RepositoryPage({
@@ -37,6 +43,10 @@ export default async function RepositoryPage({
 						<div className='flex gap-2 items-center bg-zinc-800 p-2 rounded-md'>
 							<StarIcon />
 							{repoData.watchers} starts
+						</div>
+						<div className='flex gap-2 items-center bg-zinc-800 p-2 rounded-md'>
+							<Code2Icon />
+							Language: {repoData.language || 'None'}
 						</div>
 					</div>
 

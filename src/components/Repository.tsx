@@ -19,7 +19,8 @@ export async function Repository({ repository }: { repository: RepoResponse }) {
 					<span
 						className='font-light text-zinc-400 truncate'
 						title={repository.description}>
-						{repository.description}
+						{repository.description ||
+							"This repository hasn't any description."}
 					</span>
 				</div>
 			</div>
@@ -31,7 +32,7 @@ export async function Repository({ repository }: { repository: RepoResponse }) {
 			<div className='flex flex-col'>
 				<span className='italic'>Last updated: {repository.pushed_at}</span>
 				<span className='font-light italic text-zinc-400'>
-					Language: {repository.language}
+					Language: {repository.language || 'None'}
 				</span>
 			</div>
 		</Link>
