@@ -1,4 +1,5 @@
 import { SidebarLinks } from '@/components/SidebarLinks'
+import { logout } from '@/utils/actions'
 import { LogOut } from 'lucide-react'
 
 export function Sidebar() {
@@ -12,10 +13,12 @@ export function Sidebar() {
 				<SidebarLinks />
 			</div>
 
-			<button className='flex bg-violet-600 w-full py-1 px3 items-center gap-2 rounded-md justify-center hover:bg-violet-500'>
-				<LogOut />
-				Logout
-			</button>
+			<form action={logout}>
+				<button className='flex bg-violet-600 w-full py-1 px3 items-center gap-2 rounded-md justify-center hover:bg-violet-500'>
+					<LogOut />
+					Logout
+				</button>
+			</form>
 		</aside>
 	)
 }
