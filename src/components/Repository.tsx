@@ -25,7 +25,9 @@ export async function Repository({ repository }: { repository: RepoResponse }) {
 				</div>
 			</div>
 
-			<span className='font-light text-zinc-400 text-start flex-1 px-10'>
+			<span
+				className='font-light text-zinc-400 text-start flex-1 px-10 truncate max-w-lg'
+				title={commitMessage}>
 				{commitMessage || 'No commit found'}
 			</span>
 
