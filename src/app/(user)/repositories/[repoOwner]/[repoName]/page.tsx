@@ -3,9 +3,12 @@ import { formatDate } from '@/utils/date'
 import { getRepositoryCommits, getRepositoryData } from '@/utils/fetch'
 import {
 	Code2Icon,
+	CopyIcon,
 	EyeIcon,
 	GitForkIcon,
 	GithubIcon,
+	GlobeIcon,
+	HistoryIcon,
 	StarIcon,
 } from 'lucide-react'
 import Link from 'next/link'
@@ -69,22 +72,66 @@ export default async function RepositoryPage({
 			</div>
 
 			<Separator />
-			{/* @TODO: Fetch bracnches and get last commit from selected branch - need to get default branch */}
-			{/* @TODO: Put issues and PR's count (link to a list page) */}
-			{/* @TODO: Create a button to copy git clone repository's link to clippboard */}
+
+			{/* Website section */}
+			<div className='flex justify-between py-2 px-4 rounded-md bg-zinc-900 items-center'>
+				{/* Website */}
+				<div className='flex gap-2'>
+					<GlobeIcon />
+					{repoData.homepage ? (
+						<Link href={repoData.homepage}>{repoData.homepage}</Link>
+					) : (
+						'No website for this repository'
+					)}
+				</div>
+
+				{/* Issues, PRs, Branch and Clone button */}
+				<div className='flex gap-10 items-center'>
+					<div className='flex gap-2'>
+						{/* @TODO: Put issues and PR's count */}
+						<Link
+							className='bg-zinc-800 w-32 px-2 py-1 rounded-md'
+							href={`/repositories/${repoData.full_name}/issues`}>
+							0 open issues
+						</Link>
+						<Link
+							className='bg-zinc-800 w-32 px-2 py-1 rounded-md'
+							href={`/repositories/${repoData.full_name}/PRs`}>
+							0 open PRs
+						</Link>
+						{/* @TODO: Fetch branches and get last commit from selected branch */}
+						<span className='bg-zinc-800 px-2 py-1 rounded-md'>
+							Branch: {repoData.default_branch}
+						</span>
+					</div>
+					{/* @TODO: Copy git clone repository's link to clippboard */}
+					<button className='flex gap-1 border px-2 py-1 rounded-md'>
+						<CopyIcon />
+						Clone
+					</button>
+				</div>
+			</div>
+
+			<Separator />
 
 			{/* Last commit */}
-			<div className='flex justify-between rounded-md bg-zinc-800 py-2 px-4 mx-2'>
-				<span>
-					Last commit:{' '}
+			<div className='flex justify-between rounded-md bg-zinc-900 py-2 px-4'>
+				<div className='flex gap-1'>
+					<span className='font-semibold'>Last commit:</span>
 					<span className='text-zinc-300 italic'>
 						{lastCommit?.commit.message}
-					</span>{' '}
-					by {lastCommit?.author.login} at{' '}
-					{formatDate(lastCommit?.commit.author.date!)}
-				</span>
-				{/* Will be a link later */}
-				<span>{commits.length} commits</span>
+					</span>
+					<span> - by {lastCommit?.author.login} at</span>
+					<span className='italic'>
+						{formatDate(lastCommit?.commit.author.date!)}
+					</span>
+				</div>
+				<Link
+					href={`/repositories/${repoData.full_name}/commits`}
+					className='flex gap-2'>
+					<HistoryIcon />
+					<span>{commits.length} commits</span>
+				</Link>
 			</div>
 
 			<Separator />

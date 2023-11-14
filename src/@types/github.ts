@@ -44,6 +44,7 @@ export interface RepoResponse {
 	visibility: string
 	forks: number
 	watchers: number
+	default_branch: string
 	parent?: RepoResponse
 	subscribers_count: number
 }
