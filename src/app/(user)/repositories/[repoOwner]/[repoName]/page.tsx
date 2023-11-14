@@ -24,7 +24,7 @@ export default async function RepositoryPage({
 }) {
 	const repoData = await getRepositoryData(params.repoOwner, params.repoName)
 	const commits = await getRepositoryCommits(params.repoOwner, params.repoName)
-	const lastCommit = commits.at(0)
+	const { commit, author } = commits.at(0)!
 
 	return (
 		<div className='flex flex-col gap-5 px-1'>
@@ -120,12 +120,11 @@ export default async function RepositoryPage({
 					<GitCommitHorizontalIcon />
 					<span className='font-semibold'>Last commit:</span>
 					<span className='text-zinc-300 italic'>
-						{lastCommit?.commit.message}
+						{/* {lastCommit?.commit.message} */}
+						{commit.message}
 					</span>
-					<span> - by {lastCommit?.author.login} at</span>
-					<span className='italic'>
-						{formatDate(lastCommit?.commit.author.date!)}
-					</span>
+					<span> - by {author.login} at</span>
+					<span className='italic'>{formatDate(commit.author.date)}</span>
 				</div>
 				<Link
 					href={`/repositories/${repoData.full_name}/commits`}
@@ -143,7 +142,7 @@ export default async function RepositoryPage({
 			{/* TODO: List colaborators of repository */}
 			{/* TODO: Show all languages used on repository (?) */}
 
-			<pre>{JSON.stringify(repoData, null, 2)}</pre>
+			{/* <pre>{JSON.stringify(commits, null, 2)}</pre> */}
 		</div>
 	)
 }
