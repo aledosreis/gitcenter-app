@@ -1,9 +1,9 @@
+import { CloneButton } from '@/components/CloneButton'
 import { Separator } from '@/components/Separator'
 import { formatDate } from '@/utils/date'
 import { getRepositoryCommits, getRepositoryData } from '@/utils/fetch'
 import {
 	Code2Icon,
-	CopyIcon,
 	EyeIcon,
 	GitForkIcon,
 	GithubIcon,
@@ -104,11 +104,7 @@ export default async function RepositoryPage({
 							Branch: {repoData.default_branch}
 						</span>
 					</div>
-					{/* @TODO: Copy git clone repository's link to clippboard */}
-					<button className='flex gap-1 border px-2 py-1 rounded-md'>
-						<CopyIcon />
-						Clone
-					</button>
+					<CloneButton url={repoData.clone_url} />
 				</div>
 			</div>
 
