@@ -41,7 +41,7 @@ export default async function RepositoryPage({
 						)}
 					</div>
 
-					<div className='flex gap-5'>
+					<div className='grid grid-cols-2 gap-2 2xl:flex 2xl:gap-5'>
 						<div className='flex gap-2 items-center bg-zinc-800 p-2 rounded-md'>
 							<EyeIcon />
 							{repoData.subscribers_count} watchers
