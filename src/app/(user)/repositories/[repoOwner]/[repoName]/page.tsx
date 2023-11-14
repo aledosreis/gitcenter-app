@@ -3,9 +3,13 @@ import { Separator } from '@/components/Separator'
 import { formatDate } from '@/utils/date'
 import { getRepositoryCommits, getRepositoryData } from '@/utils/fetch'
 import {
+	CircleDotIcon,
 	Code2Icon,
 	EyeIcon,
+	GitBranchIcon,
+	GitCommitHorizontalIcon,
 	GitForkIcon,
+	GitPullRequestIcon,
 	GithubIcon,
 	GlobeIcon,
 	HistoryIcon,
@@ -90,18 +94,18 @@ export default async function RepositoryPage({
 					<div className='flex gap-2'>
 						{/* @TODO: Put issues and PR's count */}
 						<Link
-							className='bg-zinc-800 w-32 px-2 py-1 rounded-md'
+							className='flex gap-2 bg-zinc-800 px-2 py-1 rounded-md'
 							href={`/repositories/${repoData.full_name}/issues`}>
-							0 open issues
+							<CircleDotIcon /> 0 open issues
 						</Link>
 						<Link
-							className='bg-zinc-800 w-32 px-2 py-1 rounded-md'
+							className='flex gap-2 bg-zinc-800 px-2 py-1 rounded-md'
 							href={`/repositories/${repoData.full_name}/PRs`}>
-							0 open PRs
+							<GitPullRequestIcon /> 0 open PRs
 						</Link>
 						{/* @TODO: Fetch branches and get last commit from selected branch */}
-						<span className='bg-zinc-800 px-2 py-1 rounded-md'>
-							Branch: {repoData.default_branch}
+						<span className='flex gap-2 bg-zinc-800 px-2 py-1 rounded-md'>
+							<GitBranchIcon /> Branch: {repoData.default_branch}
 						</span>
 					</div>
 					<CloneButton url={repoData.clone_url} />
@@ -113,6 +117,7 @@ export default async function RepositoryPage({
 			{/* Last commit */}
 			<div className='flex justify-between rounded-md bg-zinc-900 py-2 px-4'>
 				<div className='flex gap-1'>
+					<GitCommitHorizontalIcon />
 					<span className='font-semibold'>Last commit:</span>
 					<span className='text-zinc-300 italic'>
 						{lastCommit?.commit.message}
