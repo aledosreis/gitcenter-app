@@ -68,6 +68,9 @@ export default async function RepositoryPage({
 			</div>
 
 			<Separator />
+			{/* @TODO: Fetch bracnches and get last commit from selected branch - need to get default branch */}
+			{/* @TODO: Put issues and PR's count (link to a list page) */}
+			{/* @TODO: Create a button to copy git clone repository's link to clippboard */}
 
 			{/* Last commit */}
 			<div className='flex justify-between rounded-md bg-zinc-800 py-2 px-4 mx-2'>
@@ -84,7 +87,13 @@ export default async function RepositoryPage({
 
 			<Separator />
 
-			<pre>{JSON.stringify(commits, null, 2)}</pre>
+			{/* @TODO: Show README.md from this repository if exists */}
+			{/* @TOOD: List files and folders in repository (?) */}
+
+			{/* TODO: List colaborators of repository */}
+			{/* TODO: Show all languages used on repository (?) */}
+
+			<pre>{JSON.stringify(repoData, null, 2)}</pre>
 		</div>
 	)
 }
