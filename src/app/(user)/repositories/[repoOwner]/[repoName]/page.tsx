@@ -1,4 +1,5 @@
 import { Separator } from '@/components/Separator'
+import { formatDate } from '@/utils/date'
 import { getRepositoryCommits, getRepositoryData } from '@/utils/fetch'
 import {
 	Code2Icon,
@@ -79,7 +80,8 @@ export default async function RepositoryPage({
 					<span className='text-zinc-300 italic'>
 						{lastCommit?.commit.message}
 					</span>{' '}
-					by {lastCommit?.author.login} at {lastCommit?.commit.author.date}
+					by {lastCommit?.author.login} at{' '}
+					{formatDate(lastCommit?.commit.author.date!)}
 				</span>
 				{/* Will be a link later */}
 				<span>{commits.length} commits</span>

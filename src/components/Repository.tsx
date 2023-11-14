@@ -1,4 +1,5 @@
 import { RepoResponse } from '@/@types/github'
+import { formatDate } from '@/utils/date'
 import { getRepositoryCommits } from '@/utils/fetch'
 import { BookMarkedIcon } from 'lucide-react'
 import Link from 'next/link'
@@ -32,7 +33,9 @@ export async function Repository({ repository }: { repository: RepoResponse }) {
 			</span>
 
 			<div className='flex flex-col'>
-				<span className='italic'>Last updated: {repository.pushed_at}</span>
+				<span className='italic'>
+					Last updated: {formatDate(repository.pushed_at)}
+				</span>
 				<span className='font-light italic text-zinc-400'>
 					Language: {repository.language || 'None'}
 				</span>
