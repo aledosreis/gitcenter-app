@@ -2,7 +2,7 @@ import { RepoResponse } from '@/@types/github'
 import { auth } from '@/auth'
 import { formatDate } from '@/utils/date'
 import { getRepositoryCommits } from '@/utils/fetch'
-import { BookMarkedIcon } from 'lucide-react'
+import { LockIcon, UnlockIcon } from 'lucide-react'
 import Link from 'next/link'
 
 export async function Repository({ repository }: { repository: RepoResponse }) {
@@ -29,7 +29,7 @@ export async function Repository({ repository }: { repository: RepoResponse }) {
 			href={`/repositories/${repository.full_name}`}
 			className='flex items-center justify-between bg-zinc-900 border border-zinc-600 py-2 px-4 mx-5'>
 			<div className='flex gap-3 items-center'>
-				<BookMarkedIcon />
+				{repository.visibility === 'public' ? <UnlockIcon /> : <LockIcon />}
 				<div className='flex flex-col w-96'>
 					<span className='font-semibold'>{repository.name}</span>
 					<span

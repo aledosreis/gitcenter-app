@@ -14,7 +14,9 @@ import {
 	GithubIcon,
 	GlobeIcon,
 	HistoryIcon,
+	LockIcon,
 	StarIcon,
+	UnlockIcon,
 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -49,7 +51,10 @@ export default async function RepositoryPage({
 				{/* Repository Info */}
 				<div className='flex items-center justify-between'>
 					<div className='flex flex-col gap-1 bg-zinc-800 p-2 rounded-md'>
-						<h1 className='font-bold text-lg'>{repoData.full_name}</h1>
+						<h1 className='flex gap-2 font-bold text-lg'>
+							{repoData.visibility === 'public' ? <UnlockIcon /> : <LockIcon />}
+							{repoData.full_name}
+						</h1>
 						{repoData.fork && repoData.parent && (
 							<p className='font-light text-sm text-zinc-300'>
 								Forked from: {repoData.parent.full_name}
@@ -139,7 +144,7 @@ export default async function RepositoryPage({
 						{/* {lastCommit?.commit.message} */}
 						{commit.message}
 					</span>
-					<span> - by {author.login} at</span>
+					<span> - by {author?.login || commit.author.name} at</span>
 					<span className='italic'>{formatDate(commit.author.date)}</span>
 				</div>
 				<Link
