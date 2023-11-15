@@ -43,7 +43,7 @@ export default async function DashboardPage() {
 					</div>
 
 					{/* User Contact */}
-					<div className='grid grid-cols-2 gap-2 bg-zinc-800 rounded-md p-2'>
+					<div className='grid grid-cols-2 gap-y-2 bg-zinc-800 rounded-md p-2'>
 						<div
 							className='flex gap-1'
 							title='Company'>
@@ -87,34 +87,6 @@ export default async function DashboardPage() {
 						</div>
 					</div>
 
-					{/* User Git Stats */}
-					<div className='grid grid-cols-2 gap-2 bg-zinc-800 rounded-md p-2'>
-						<div className='flex gap-1'>
-							<BookMarkedIcon />
-							<span className='text-zinc-300'>
-								{profile.public_repos} public repos
-							</span>
-						</div>
-						<div className='flex gap-1'>
-							<Users2Icon />
-							<span className='text-zinc-300'>
-								{profile.followers} followers
-							</span>
-						</div>
-						<div className='flex gap-1'>
-							<SquareCodeIcon />
-							<span className='text-zinc-300'>
-								{profile.public_gists} pubic gists
-							</span>
-						</div>
-						<div className='flex gap-1'>
-							<Users2Icon />
-							<span className='text-zinc-300'>
-								{profile.following} following
-							</span>
-						</div>
-					</div>
-
 					<Link
 						href={profile.html_url}
 						target='_blank'
@@ -127,6 +99,32 @@ export default async function DashboardPage() {
 				<span className='text-zinc-300 italic w-full'>
 					{profile.bio || "You didn't wrote nothing in your Github profile bio"}
 				</span>
+			</div>
+
+			<Separator />
+
+			{/* User Git Stats */}
+			<div className='flex justify-around bg-zinc-900 rounded-md p-2'>
+				<div className='flex gap-1'>
+					<BookMarkedIcon />
+					<span className='text-zinc-300'>
+						{profile.public_repos} public repos
+					</span>
+				</div>
+				<div className='flex gap-1'>
+					<Users2Icon />
+					<span className='text-zinc-300'>{profile.followers} followers</span>
+				</div>
+				<div className='flex gap-1'>
+					<SquareCodeIcon />
+					<span className='text-zinc-300'>
+						{profile.public_gists} pubic gists
+					</span>
+				</div>
+				<div className='flex gap-1'>
+					<Users2Icon />
+					<span className='text-zinc-300'>{profile.following} following</span>
+				</div>
 			</div>
 
 			<Separator />
@@ -147,8 +145,6 @@ export default async function DashboardPage() {
 			</div>
 
 			<Separator />
-
-			<pre>{JSON.stringify(session, null, 2)}</pre>
 		</div>
 	)
 }
