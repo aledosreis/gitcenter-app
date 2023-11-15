@@ -2,7 +2,7 @@ import { auth } from '@/auth'
 import Avatar from '@/components/Avatar'
 import { FollowsCard } from '@/components/FollowsCard'
 import { Separator } from '@/components/Separator'
-import { getUserData, getUserFollowers, getUserFollowing } from '@/utils/fetch'
+import { getUserFollowers, getUserFollowing } from '@/utils/fetch'
 import {
 	BookMarkedIcon,
 	BuildingIcon,
@@ -17,9 +17,13 @@ import Link from 'next/link'
 
 export default async function DashboardPage() {
 	const session = await auth()
-	const user = await getUserData('octocat')
-	const followers = await getUserFollowers('octocat')
-	const following = await getUserFollowing('octocat')
+	if (!session) return null
+	const {
+		user: { profile, access_token, ...user },
+	} = session
+	// const user = await getUserData('octocat')
+	const followers = await getUserFollowers(profile.login)
+	const following = await getUserFollowing(profile.login)
 
 	return (
 		<div className='w-full flex flex-col gap-5 px-1'>
@@ -28,13 +32,13 @@ export default async function DashboardPage() {
 				<div className='flex w-full justify-between items-center'>
 					{/* User Details */}
 					<div className='flex gap-2 items-center bg-zinc-800 rounded-md p-2'>
-						<Avatar user={user} />
+						<Avatar user={profile} />
 
 						<div className='flex flex-col'>
 							<h2 className='text-xl font-extrabold'>
 								Hello, <span className='text-violet-500'>{user.name}</span>
 							</h2>
-							<span className='text-zinc-300 text-lg'>@{user.login}</span>
+							<span className='text-zinc-300 text-lg'>@{profile.login}</span>
 						</div>
 					</div>
 
@@ -45,7 +49,7 @@ export default async function DashboardPage() {
 							title='Company'>
 							<BuildingIcon />
 							<span className='text-zinc-300'>
-								{user.company || 'Not registered'}
+								{profile.company || 'Not registered'}
 							</span>
 						</div>
 						<div
@@ -61,23 +65,23 @@ export default async function DashboardPage() {
 							title='Location'>
 							<MapPinIcon />
 							<span className='text-zinc-300'>
-								{user.location || 'Not registered'}
+								{profile.location || 'Not registered'}
 							</span>
 						</div>
 						<div
 							className='flex gap-1'
 							title='Blog'>
 							<LinkIcon />
-							{user.blog ? (
+							{profile.blog ? (
 								<Link
-									href={user.blog}
+									href={profile.blog}
 									target='_blank'
 									className='text-zinc-300'>
-									{user.blog}
+									{profile.blog}
 								</Link>
 							) : (
 								<span className='text-zinc-300'>
-									{user.blog || 'Not registered'}
+									{profile.blog || 'Not registered'}
 								</span>
 							)}
 						</div>
@@ -88,27 +92,31 @@ export default async function DashboardPage() {
 						<div className='flex gap-1'>
 							<BookMarkedIcon />
 							<span className='text-zinc-300'>
-								{user.public_repos} public repos
+								{profile.public_repos} public repos
 							</span>
 						</div>
 						<div className='flex gap-1'>
 							<Users2Icon />
-							<span className='text-zinc-300'>{user.followers} followers</span>
+							<span className='text-zinc-300'>
+								{profile.followers} followers
+							</span>
 						</div>
 						<div className='flex gap-1'>
 							<SquareCodeIcon />
 							<span className='text-zinc-300'>
-								{user.public_gists} pubic gists
+								{profile.public_gists} pubic gists
 							</span>
 						</div>
 						<div className='flex gap-1'>
 							<Users2Icon />
-							<span className='text-zinc-300'>{user.following} following</span>
+							<span className='text-zinc-300'>
+								{profile.following} following
+							</span>
 						</div>
 					</div>
 
 					<Link
-						href={user.html_url}
+						href={profile.html_url}
 						target='_blank'
 						className='flex items-center gap-1 border px-2 py-1 rounded-md'>
 						<GithubIcon />
@@ -117,7 +125,7 @@ export default async function DashboardPage() {
 				</div>
 
 				<span className='text-zinc-300 italic w-full'>
-					{user.bio || "You didn't wrote nothing in your Github profile bio"}
+					{profile.bio || "You didn't wrote nothing in your Github profile bio"}
 				</span>
 			</div>
 
