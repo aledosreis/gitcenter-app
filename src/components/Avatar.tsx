@@ -1,3 +1,4 @@
+import { UserResponse } from '@/@types/github'
 import clsx from 'clsx'
 import { Profile } from 'next-auth/types'
 import Image from 'next/image'
@@ -6,7 +7,7 @@ export default function Avatar({
 	user,
 	className,
 }: {
-	user: Profile
+	user: Profile | UserResponse
 	className?: string
 }) {
 	return (
