@@ -1,3 +1,4 @@
+import { auth } from '@/auth'
 import { CloneButton } from '@/components/CloneButton'
 import { Separator } from '@/components/Separator'
 import { formatDate } from '@/utils/date'
@@ -22,8 +23,23 @@ export default async function RepositoryPage({
 }: {
 	params: { repoOwner: string; repoName: string }
 }) {
-	const repoData = await getRepositoryData(params.repoOwner, params.repoName)
-	const commits = await getRepositoryCommits(params.repoOwner, params.repoName)
+	const session = await auth()
+	if (!session) return null
+
+	const {
+		user: { access_token },
+	} = session
+
+	const repoData = await getRepositoryData(
+		params.repoOwner,
+		params.repoName,
+		access_token!
+	)
+	const commits = await getRepositoryCommits(
+		params.repoOwner,
+		params.repoName,
+		access_token!
+	)
 	const { commit, author } = commits.at(0)!
 
 	return (

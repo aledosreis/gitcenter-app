@@ -1,11 +1,26 @@
 import { RepoResponse } from '@/@types/github'
+import { auth } from '@/auth'
 import { formatDate } from '@/utils/date'
 import { getRepositoryCommits } from '@/utils/fetch'
 import { BookMarkedIcon } from 'lucide-react'
 import Link from 'next/link'
 
 export async function Repository({ repository }: { repository: RepoResponse }) {
-	const commits = await getRepositoryCommits('octocat', repository.name)
+	const session = await auth()
+	if (!session) return null
+
+	const {
+		user: {
+			access_token,
+			profile: { login },
+		},
+	} = session
+
+	const commits = await getRepositoryCommits(
+		login,
+		repository.name,
+		access_token!
+	)
 	const lastCommit = commits.at(0)
 	const commitMessage = lastCommit?.commit.message
 

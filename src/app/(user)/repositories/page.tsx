@@ -1,8 +1,18 @@
+import { auth } from '@/auth'
 import { Repository } from '@/components/Repository'
 import { getRepositories } from '@/utils/fetch'
 
 export default async function RepositoriesPage() {
-	const repositories = await getRepositories('octocat')
+	const session = await auth()
+	if (!session) return null
+	const {
+		user: {
+			access_token,
+			profile: { login },
+		},
+	} = session
+
+	const repositories = await getRepositories(login, access_token!)
 
 	return (
 		<div className='w-full flex flex-col gap-5'>
