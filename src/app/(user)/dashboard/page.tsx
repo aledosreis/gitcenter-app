@@ -1,3 +1,4 @@
+import { auth } from '@/auth'
 import Avatar from '@/components/Avatar'
 import { FollowsCard } from '@/components/FollowsCard'
 import { Separator } from '@/components/Separator'
@@ -15,6 +16,7 @@ import {
 import Link from 'next/link'
 
 export default async function DashboardPage() {
+	const session = await auth()
 	const user = await getUserData('octocat')
 	const followers = await getUserFollowers('octocat')
 	const following = await getUserFollowing('octocat')
@@ -137,6 +139,8 @@ export default async function DashboardPage() {
 			</div>
 
 			<Separator />
+
+			<pre>{JSON.stringify(session, null, 2)}</pre>
 		</div>
 	)
 }
