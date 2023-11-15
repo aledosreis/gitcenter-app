@@ -22,8 +22,8 @@ export default async function DashboardPage() {
 		user: { profile, access_token, ...user },
 	} = session
 	// const user = await getUserData('octocat')
-	const followers = await getUserFollowers(profile.login)
-	const following = await getUserFollowing(profile.login)
+	const followers = await getUserFollowers(profile.login, access_token!)
+	const following = await getUserFollowing(profile.login, access_token!)
 
 	return (
 		<div className='w-full flex flex-col gap-5 px-1'>
