@@ -104,7 +104,11 @@ export default async function RepositoryPage({
 				<div className='flex gap-2'>
 					<GlobeIcon />
 					{repoData.homepage ? (
-						<Link href={repoData.homepage}>{repoData.homepage}</Link>
+						<Link
+							target='_blank'
+							href={repoData.homepage}>
+							{repoData.homepage}
+						</Link>
 					) : (
 						'No website for this repository'
 					)}
