@@ -17,7 +17,7 @@ export default function Avatar({
 				width={0}
 				height={0}
 				sizes='100vw'
-				className={clsx('h-14 w-14 object-contain rounded-full', className)}
+				className={clsx('h-14 w-14 object-fill rounded-full', className)}
 			/>
 		</div>
 	)
