@@ -1,6 +1,7 @@
 import { auth } from '@/auth'
 import { Repository } from '@/components/Repository'
-import { getRepositories } from '@/utils/fetch'
+import { Separator } from '@/components/Separator'
+import { getCurrentUserRepositories } from '@/utils/fetch'
 
 export default async function RepositoriesPage() {
 	const session = await auth()
@@ -12,13 +13,13 @@ export default async function RepositoriesPage() {
 		},
 	} = session
 
-	const repositories = await getRepositories(login, access_token!)
+	const repositories = await getCurrentUserRepositories(access_token!)
 
 	return (
 		<div className='w-full flex flex-col gap-5'>
 			<div className='flex flex-col gap-3'>
-				<h1 className='font-bold'>Repositories in this account</h1>
-				<div className='w-full h-px bg-zinc-500' />
+				<h1 className='font-bold text-xl'>Repositories for @{login}</h1>
+				<Separator />
 			</div>
 
 			<div className='flex flex-col gap-1'>

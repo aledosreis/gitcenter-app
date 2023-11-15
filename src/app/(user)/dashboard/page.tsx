@@ -2,7 +2,7 @@ import { auth } from '@/auth'
 import Avatar from '@/components/Avatar'
 import { FollowsCard } from '@/components/FollowsCard'
 import { Separator } from '@/components/Separator'
-import { getUserFollowers, getUserFollowing } from '@/utils/fetch'
+import { getCurrentUserFollowers, getCurrentUserFollowing } from '@/utils/fetch'
 import {
 	BookMarkedIcon,
 	BuildingIcon,
@@ -21,9 +21,8 @@ export default async function DashboardPage() {
 	const {
 		user: { profile, access_token, ...user },
 	} = session
-	// const user = await getUserData('octocat')
-	const followers = await getUserFollowers(profile.login, access_token!)
-	const following = await getUserFollowing(profile.login, access_token!)
+	const followers = await getCurrentUserFollowers(access_token!)
+	const following = await getCurrentUserFollowing(access_token!)
 
 	return (
 		<div className='w-full flex flex-col gap-5 px-1'>
