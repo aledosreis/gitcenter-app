@@ -12,9 +12,6 @@ export function FollowsCard({
 		<div className='flex flex-col gap-3 items-center bg-zinc-800 rounded-md p-3 flex-1'>
 			<span className='self-start text-lg font-semibold capitalize'>
 				{type}{' '}
-				<span className='font-normal text-base italic lowercase'>
-					(shows max 10 {type})
-				</span>
 			</span>
 			<div className='flex -space-x-2 overflow-hidden'>
 				{users.length > 0 ? (
@@ -22,7 +19,7 @@ export function FollowsCard({
 						<Avatar
 							key={user.login}
 							user={user}
-							className='h-10 w-10 border '
+							className='border'
 						/>
 					))
 				) : (
