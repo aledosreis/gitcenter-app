@@ -1,6 +1,7 @@
 import {
 	RepoResponse,
 	RepositoryCommitResponse,
+	RepositoryReadmeResponse,
 	UserResponse,
 } from '@/@types/github'
 import { auth } from '@/auth'
@@ -127,8 +128,25 @@ export async function getCurrentUserFollowing(): Promise<UserResponse[]> {
  * @param owner owner of repository
  * @param repository name of repository
  */
-export async function getRepositoryReadme(owner: string, repository: string) {
+export async function getRepositoryReadme(
+	owner: string,
+	repository: string
+): Promise<RepositoryReadmeResponse> {
 	const url = `${BASE_API_URL}repos/${owner}/${repository}/readme`
+	const response = await fetchData(url)
+	return response.json()
+}
+
+/**
+ * Fetch repository's collaborators
+ * @param owner owner of repository
+ * @param repository name of repository
+ */
+export async function getRepositoryCollaborators(
+	owner: string,
+	repository: string
+): Promise<UserResponse[]> {
+	const url = `${BASE_API_URL}repos/${owner}/${repository}/collaborators`
 	const response = await fetchData(url)
 	return response.json()
 }

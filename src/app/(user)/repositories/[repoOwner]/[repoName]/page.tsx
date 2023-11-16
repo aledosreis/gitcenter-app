@@ -1,7 +1,9 @@
+import Avatar from '@/components/Avatar'
 import { CloneButton } from '@/components/CloneButton'
 import { Separator } from '@/components/Separator'
 import { formatDate } from '@/utils/date'
 import {
+	getRepositoryCollaborators,
 	getRepositoryCommits,
 	getRepositoryData,
 	getRepositoryReadme,
@@ -33,6 +35,8 @@ export default async function RepositoryPage({
 	const { commit, author } = commits.at(0)!
 
 	const readme = await getRepositoryReadme(repoOwner, repoName)
+
+	const collaborators = await getRepositoryCollaborators(repoOwner, repoName)
 
 	return (
 		<div className='flex flex-col gap-5 px-1'>
@@ -160,8 +164,19 @@ export default async function RepositoryPage({
 
 			<Separator />
 
-			<div className='bg-zinc-900 w-full py-2 px-4'>
-				{/* TODO: List colaborators of repository */}
+			<div className='flex flex-col gap-3 bg-zinc-900 w-full py-2 px-4'>
+				<span className='self-start text-lg font-semibold capitalize'>
+					Collaborators
+				</span>
+				<div className='flex -space-x-2 overflow-hidden'>
+					{collaborators.map((collaborator) => (
+						<Avatar
+							key={collaborator.login}
+							user={collaborator}
+							className='border'
+						/>
+					))}
+				</div>
 			</div>
 		</div>
 	)

@@ -73,3 +73,13 @@ export interface RepositoryCommitResponse {
 	author: UserResponse
 	committer: UserResponse
 }
+
+export interface RepositoryReadmeResponse {
+	type: string
+	encoding: string
+	size: number
+	name: string
+	path: string
+	content: string
+	sha: string
+}
