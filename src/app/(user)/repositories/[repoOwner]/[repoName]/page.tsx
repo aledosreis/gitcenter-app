@@ -118,7 +118,6 @@ export default async function RepositoryPage({
 							href={`/repositories/${repoData.full_name}/PRs`}>
 							<GitPullRequestIcon /> 0 open PRs
 						</Link>
-						{/* @TODO: Fetch branches and get last commit from selected branch */}
 						<span className='flex gap-2 bg-zinc-800 px-2 py-1 rounded-md'>
 							<GitBranchIcon /> Branch: {repoData.default_branch}
 						</span>
@@ -134,10 +133,7 @@ export default async function RepositoryPage({
 				<div className='flex gap-1'>
 					<GitCommitHorizontalIcon />
 					<span className='font-semibold'>Last commit:</span>
-					<span className='text-zinc-300 italic'>
-						{/* {lastCommit?.commit.message} */}
-						{commit.message}
-					</span>
+					<span className='text-zinc-300 italic'>{commit.message}</span>
 					<span> - by {author?.login || commit.author.name} at</span>
 					<span className='italic'>{formatDate(commit.author.date)}</span>
 				</div>
