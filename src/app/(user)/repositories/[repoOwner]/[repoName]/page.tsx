@@ -1,3 +1,4 @@
+import { auth } from '@/auth'
 import Avatar from '@/components/Avatar'
 import { CloneButton } from '@/components/CloneButton'
 import { Separator } from '@/components/Separator'
@@ -32,6 +33,36 @@ export default async function RepositoryPage({
 }: {
 	params: { repoOwner: string; repoName: string }
 }) {
+	const session = await auth()
+	if (!session) return null
+
+	const {
+		user: {
+			profile: { login },
+		},
+	} = session
+
+	if (repoOwner !== login) {
+		return (
+			<div className='w-full justify-center items-center -my-4 h-screen gap-4'>
+				<div className='flex h-full items-center justify-center'>
+					<GithubIcon
+						size={500}
+						className='opacity-25'
+					/>
+					<div className='flex flex-col gap-3'>
+						<h1 className='text-3xl font-bold'>
+							You can not see repositories you do not own.
+						</h1>
+						<p className='text-zinc-300 text-xl'>
+							Please go to your repositories using Repositories menu
+						</p>
+					</div>
+				</div>
+			</div>
+		)
+	}
+
 	const repoData = await getRepositoryData(repoOwner, repoName)
 	const commits = await getRepositoryCommits(repoOwner, repoName)
 	const { commit, author } = commits.at(0)!

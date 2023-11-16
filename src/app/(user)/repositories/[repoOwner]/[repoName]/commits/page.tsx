@@ -1,3 +1,8 @@
 export default function RepositoryCommitsPage() {
-	return <p>Repository Commits</p>
+	return (
+		<div>
+			<div>Repository commits</div>
+			<div>Here will be a list of commits from this repository</div>
+		</div>
+	)
 }
