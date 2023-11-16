@@ -118,7 +118,7 @@ export async function getRepositoryIssuesAndPRs(
 	owner: string,
 	repository: string
 ): Promise<RepositoryIssueResponse[]> {
-	const url = `${BASE_API_URL}repos/${owner}/${repository}/issues`
+	const url = `${BASE_API_URL}repos/${owner}/${repository}/issues?state=all` //add ?state=all to fetch open and closed
 	const response = await fetchData(url)
 	return response.json()
 }
