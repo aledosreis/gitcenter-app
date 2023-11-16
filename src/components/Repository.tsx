@@ -24,7 +24,11 @@ export async function Repository({ repository }: { repository: RepoResponse }) {
 			href={`/repositories/${repository.full_name}`}
 			className='flex items-center justify-between bg-zinc-900 border border-zinc-600 py-2 px-4 mx-5'>
 			<div className='flex gap-3 items-center'>
-				{repository.visibility === 'public' ? <UnlockIcon /> : <LockIcon />}
+				{repository.visibility === 'public' ? (
+					<UnlockIcon className='text-green-600' />
+				) : (
+					<LockIcon className='text-red-600' />
+				)}
 				<div className='flex flex-col w-96'>
 					<span className='font-semibold'>{repository.name}</span>
 					<span

@@ -1,7 +1,6 @@
 import { auth } from '@/auth'
 import { GithubButton } from '@/components/GithubButton'
 import { GoToDashboardButton } from '@/components/GoToDashboardButton'
-import { ThemeButton } from '@/components/ThemeButton'
 import { GithubIcon } from 'lucide-react'
 
 export default async function Home() {
@@ -16,7 +15,6 @@ export default async function Home() {
 				<h2 className='text-lg font-bold'>Git Center</h2>
 
 				<div className='flex gap-3'>
-					<ThemeButton />
 					{session ? <GoToDashboardButton /> : <GithubButton />}
 				</div>
 			</div>

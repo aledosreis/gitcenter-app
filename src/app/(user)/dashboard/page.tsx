@@ -46,7 +46,7 @@ export default async function DashboardPage() {
 						<div
 							className='flex gap-1'
 							title='Company'>
-							<BuildingIcon />
+							<BuildingIcon className='text-violet-600' />
 							<span className='text-zinc-300'>
 								{profile.company || 'Not registered'}
 							</span>
@@ -54,7 +54,7 @@ export default async function DashboardPage() {
 						<div
 							className='flex gap-1'
 							title='Email'>
-							<MailIcon />
+							<MailIcon className='text-violet-600' />
 							<span className='text-zinc-300'>
 								{user.email || 'Not registered'}
 							</span>
@@ -62,7 +62,7 @@ export default async function DashboardPage() {
 						<div
 							className='flex gap-1'
 							title='Location'>
-							<MapPinIcon />
+							<MapPinIcon className='text-violet-600' />
 							<span className='text-zinc-300'>
 								{profile.location || 'Not registered'}
 							</span>
@@ -70,7 +70,7 @@ export default async function DashboardPage() {
 						<div
 							className='flex gap-1'
 							title='Blog'>
-							<LinkIcon />
+							<LinkIcon className='text-violet-600' />
 							{profile.blog ? (
 								<Link
 									href={profile.blog}
@@ -105,23 +105,23 @@ export default async function DashboardPage() {
 			{/* User Git Stats */}
 			<div className='flex justify-around bg-zinc-900 rounded-md p-2'>
 				<div className='flex gap-1'>
-					<BookMarkedIcon />
+					<BookMarkedIcon className='text-violet-600' />
 					<span className='text-zinc-300'>
 						{profile.public_repos} public repos
 					</span>
 				</div>
 				<div className='flex gap-1'>
-					<Users2Icon />
+					<Users2Icon className='text-violet-600' />
 					<span className='text-zinc-300'>{profile.followers} followers</span>
 				</div>
 				<div className='flex gap-1'>
-					<SquareCodeIcon />
+					<SquareCodeIcon className='text-violet-600' />
 					<span className='text-zinc-300'>
 						{profile.public_gists} pubic gists
 					</span>
 				</div>
 				<div className='flex gap-1'>
-					<Users2Icon />
+					<Users2Icon className='text-violet-600' />
 					<span className='text-zinc-300'>{profile.following} following</span>
 				</div>
 			</div>

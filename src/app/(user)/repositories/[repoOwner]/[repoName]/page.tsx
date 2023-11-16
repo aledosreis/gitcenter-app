@@ -79,7 +79,11 @@ export default async function RepositoryPage({
 				<div className='flex items-center justify-between'>
 					<div className='flex flex-col gap-1 bg-zinc-800 p-2 rounded-md'>
 						<h1 className='flex gap-2 font-bold text-lg'>
-							{repoData.visibility === 'public' ? <UnlockIcon /> : <LockIcon />}
+							{repoData.visibility === 'public' ? (
+								<UnlockIcon className='text-violet-600' />
+							) : (
+								<LockIcon className='text-violet-600' />
+							)}
 							{repoData.full_name}
 						</h1>
 						{repoData.fork && repoData.parent && (
@@ -91,19 +95,19 @@ export default async function RepositoryPage({
 
 					<div className='grid grid-cols-2 gap-2 2xl:flex 2xl:gap-5'>
 						<div className='flex gap-2 items-center bg-zinc-800 p-2 rounded-md'>
-							<EyeIcon />
+							<EyeIcon className='text-violet-600' />
 							{repoData.subscribers_count} watchers
 						</div>
 						<div className='flex gap-2 items-center bg-zinc-800 p-2 rounded-md'>
-							<GitForkIcon />
+							<GitForkIcon className='text-violet-600' />
 							{repoData.forks} forks
 						</div>
 						<div className='flex gap-2 items-center bg-zinc-800 p-2 rounded-md'>
-							<StarIcon />
+							<StarIcon className='text-violet-600' />
 							{repoData.watchers} starts
 						</div>
 						<div className='flex gap-2 items-center bg-zinc-800 p-2 rounded-md'>
-							<Code2Icon />
+							<Code2Icon className='text-violet-600' />
 							Language: {repoData.language || 'None'}
 						</div>
 					</div>
@@ -129,7 +133,7 @@ export default async function RepositoryPage({
 			<div className='flex justify-between py-2 px-4 rounded-md bg-zinc-900 items-center'>
 				{/* Website */}
 				<div className='flex gap-2'>
-					<GlobeIcon />
+					<GlobeIcon className='text-violet-600' />
 					{repoData.homepage ? (
 						<Link
 							target='_blank'
@@ -148,15 +152,16 @@ export default async function RepositoryPage({
 						<Link
 							className='flex gap-2 bg-zinc-800 px-2 py-1 rounded-md'
 							href={`/repositories/${repoData.full_name}/issues`}>
-							<CircleDotIcon /> 0 open issues
+							<CircleDotIcon className='text-green-600' /> 0 open issues
 						</Link>
 						<Link
 							className='flex gap-2 bg-zinc-800 px-2 py-1 rounded-md'
 							href={`/repositories/${repoData.full_name}/PRs`}>
-							<GitPullRequestIcon /> 0 open PRs
+							<GitPullRequestIcon className='text-green-600' /> 0 open PRs
 						</Link>
 						<span className='flex gap-2 bg-zinc-800 px-2 py-1 rounded-md'>
-							<GitBranchIcon /> Branch: {repoData.default_branch}
+							<GitBranchIcon className='text-violet-600' /> Branch:{' '}
+							{repoData.default_branch}
 						</span>
 					</div>
 					<CloneButton url={repoData.clone_url} />
@@ -168,7 +173,7 @@ export default async function RepositoryPage({
 			{/* Last commit */}
 			<div className='flex justify-between rounded-md bg-zinc-900 py-2 px-4'>
 				<div className='flex gap-1'>
-					<GitCommitHorizontalIcon />
+					<GitCommitHorizontalIcon className='text-violet-600' />
 					<span className='font-semibold'>Last commit:</span>
 					<span className='text-zinc-300 italic'>{commit.message}</span>
 					<span> - by {author?.login || commit.author.name} at</span>
@@ -177,7 +182,7 @@ export default async function RepositoryPage({
 				<Link
 					href={`/repositories/${repoData.full_name}/commits`}
 					className='flex gap-2'>
-					<HistoryIcon />
+					<HistoryIcon className='text-violet-600' />
 					<span>{commits.length} commits</span>
 				</Link>
 			</div>

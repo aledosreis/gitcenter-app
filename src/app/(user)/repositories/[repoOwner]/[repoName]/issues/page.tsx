@@ -49,7 +49,7 @@ export default async function RepositoryIssuesPage({
 			{/* Header */}
 			<div className='bg-zinc-900 px-3 py-1 rounded-md flex justify-between items-center'>
 				<h1 className='text-2xl flex gap-2 items-center'>
-					<CircleDotIcon />
+					<CircleDotIcon className='text-violet-600' />
 					Issues from {repoOwner}/{repoName}
 				</h1>
 
@@ -70,7 +70,11 @@ export default async function RepositoryIssuesPage({
 						key={issue.id}
 						className='w-full border border-zinc-600 px-3 py-2 bg-zinc-900 flex justify-between items-center'>
 						<div className='flex gap-2'>
-							<CircleDotIcon />
+							<CircleDotIcon
+								className={
+									issue.state === 'closed' ? 'text-red-600' : 'text-green-600'
+								}
+							/>
 							<span>{issue.title}</span>
 							<span
 								className={`px-3 rounded-xl ${
