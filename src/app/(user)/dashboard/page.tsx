@@ -19,10 +19,10 @@ export default async function DashboardPage() {
 	const session = await auth()
 	if (!session) return null
 	const {
-		user: { profile, access_token, ...user },
+		user: { profile, ...user },
 	} = session
-	const followers = await getCurrentUserFollowers(access_token!)
-	const following = await getCurrentUserFollowing(access_token!)
+	const followers = await getCurrentUserFollowers()
+	const following = await getCurrentUserFollowing()
 
 	return (
 		<div className='w-full flex flex-col gap-5 px-1'>

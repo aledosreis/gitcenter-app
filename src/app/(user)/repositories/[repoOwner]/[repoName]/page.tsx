@@ -1,8 +1,11 @@
-import { auth } from '@/auth'
 import { CloneButton } from '@/components/CloneButton'
 import { Separator } from '@/components/Separator'
 import { formatDate } from '@/utils/date'
-import { getRepositoryCommits, getRepositoryData } from '@/utils/fetch'
+import {
+	getRepositoryCommits,
+	getRepositoryData,
+	getRepositoryReadme,
+} from '@/utils/fetch'
 import {
 	CircleDotIcon,
 	Code2Icon,
@@ -25,24 +28,11 @@ export default async function RepositoryPage({
 }: {
 	params: { repoOwner: string; repoName: string }
 }) {
-	const session = await auth()
-	if (!session) return null
-
-	const {
-		user: { access_token },
-	} = session
-
-	const repoData = await getRepositoryData(
-		params.repoOwner,
-		params.repoName,
-		access_token!
-	)
-	const commits = await getRepositoryCommits(
-		params.repoOwner,
-		params.repoName,
-		access_token!
-	)
+	const repoData = await getRepositoryData(params.repoOwner, params.repoName)
+	const commits = await getRepositoryCommits(params.repoOwner, params.repoName)
 	const { commit, author } = commits.at(0)!
+
+	const readme = await getRepositoryReadme(params.repoOwner, params.repoName)
 
 	return (
 		<div className='flex flex-col gap-5 px-1'>
@@ -161,13 +151,16 @@ export default async function RepositoryPage({
 
 			<Separator />
 
-			{/* @TODO: Show README.md from this repository if exists */}
-			{/* @TOOD: List files and folders in repository (?) */}
+			<div className='bg-zinc-900 w-full py-2 px-4'>
+				{/* @TODO: Show README.md from this repository if exists */}
+				{atob(readme.content)}
+			</div>
 
-			{/* TODO: List colaborators of repository */}
-			{/* TODO: Show all languages used on repository (?) */}
+			<Separator />
 
-			{/* <pre>{JSON.stringify(commits, null, 2)}</pre> */}
+			<div className='bg-zinc-900 w-full py-2 px-4'>
+				{/* TODO: List colaborators of repository */}
+			</div>
 		</div>
 	)
 }

@@ -8,12 +8,11 @@ export default async function RepositoriesPage() {
 	if (!session) return null
 	const {
 		user: {
-			access_token,
 			profile: { login },
 		},
 	} = session
 
-	const repositories = await getCurrentUserRepositories(access_token!)
+	const repositories = await getCurrentUserRepositories()
 
 	return (
 		<div className='w-full flex flex-col gap-5'>

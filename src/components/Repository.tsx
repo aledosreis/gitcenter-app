@@ -11,16 +11,11 @@ export async function Repository({ repository }: { repository: RepoResponse }) {
 
 	const {
 		user: {
-			access_token,
 			profile: { login },
 		},
 	} = session
 
-	const commits = await getRepositoryCommits(
-		login,
-		repository.name,
-		access_token!
-	)
+	const commits = await getRepositoryCommits(login, repository.name)
 	const lastCommit = commits.at(0)
 	const commitMessage = lastCommit?.commit.message
 
