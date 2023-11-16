@@ -1,9 +1,3 @@
-/**
- * Github User data response type
- * Endpoint: https://api.github.com/users/{user}
- * Endpoint: https://api.github.com/users/{user}/followers will return user array
- * Endpoint: https://api.github.com/users/{user}/following will return user array
- */
 export interface UserResponse {
 	login: string
 	avatar_url: string
@@ -21,11 +15,6 @@ export interface UserResponse {
 	following: number
 }
 
-/**
- * Github repository data response type
- * Endpoint: https://api.github.com/repos/{owner}/{repository} for single repository
- * Endpoint: https://api.github.com/users/{user}/repos/ will return repositories array
- */
 export interface RepoResponse {
 	id: number
 	name: string
@@ -49,11 +38,6 @@ export interface RepoResponse {
 	subscribers_count: number
 }
 
-/**
- * Github Commit data response type
- * Endpoint: https://api.github.com/repos/{user}/{repo}/commits/{sha} for single commit
- * Endpoint: https://api.github.com/repos/{user}/{repo}/commits will return commit array
- */
 export interface RepositoryCommitResponse {
 	sha: string
 	commit: {
@@ -82,4 +66,20 @@ export interface RepositoryReadmeResponse {
 	path: string
 	content: string
 	sha: string
+}
+
+export interface RepositoryIssueResponse {
+	html_url: string
+	id: number
+	number: number
+	title: string
+	user: UserResponse
+	state: 'open' | 'closed'
+	comments: number
+	created_at: string
+	closed_at: string | null
+	pull_request?: {
+		merged_at: string | null
+	}
+	body: string
 }

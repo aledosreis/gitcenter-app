@@ -1,6 +1,7 @@
 import {
 	RepoResponse,
 	RepositoryCommitResponse,
+	RepositoryIssueResponse,
 	RepositoryReadmeResponse,
 	UserResponse,
 } from '@/@types/github'
@@ -23,27 +24,6 @@ async function fetchData(url: string) {
 	})
 
 	return response
-}
-
-/**
- * Fetch data from Github user
- * @param user username from a Github user
- */
-export async function getUserData(user: string): Promise<UserResponse> {
-	const url = `${BASE_API_URL}users/${user}`
-	const response = await fetchData(url)
-	return response.json()
-}
-
-/**
- * Fech all repositories owned by a Github user
- * @param user  username from a Github User
- * @variation getCurrentUserRepositories for current user repositories
- */
-export async function getRepositories(user: string): Promise<RepoResponse[]> {
-	const url = `${BASE_API_URL}users/${user}/repos`
-	const response = await fetchData(url)
-	return response.json()
 }
 
 /**
@@ -85,31 +65,9 @@ export async function getRepositoryCommits(
 
 /**
  * Fetch followers from Github user
- * @param user username from a Github user
- * @variation getCurrentUserFollowers for current user followers
- */
-export async function getUserFollowers(user: string): Promise<UserResponse[]> {
-	const url = `${BASE_API_URL}users/${user}/followers`
-	const response = await fetchData(url)
-	return response.json()
-}
-
-/**
- * Fetch followers from Github user
  */
 export async function getCurrentUserFollowers(): Promise<UserResponse[]> {
 	const url = `${BASE_API_URL}user/followers`
-	const response = await fetchData(url)
-	return response.json()
-}
-
-/**
- * Fetch following from Github user
- * @param user username from a Github user
- * @variation getCurrentUserFollowing for current user following
- */
-export async function getUserFollowing(user: string): Promise<UserResponse[]> {
-	const url = `${BASE_API_URL}users/${user}/following`
 	const response = await fetchData(url)
 	return response.json()
 }
@@ -147,6 +105,20 @@ export async function getRepositoryCollaborators(
 	repository: string
 ): Promise<UserResponse[]> {
 	const url = `${BASE_API_URL}repos/${owner}/${repository}/collaborators`
+	const response = await fetchData(url)
+	return response.json()
+}
+
+/**
+ * Fetch repository's issues and PRs
+ * @param owner owner of repository
+ * @param repository name of repository
+ */
+export async function getRepositoryIssuesAndPRs(
+	owner: string,
+	repository: string
+): Promise<RepositoryIssueResponse[]> {
+	const url = `${BASE_API_URL}repos/${owner}/${repository}/issues`
 	const response = await fetchData(url)
 	return response.json()
 }
