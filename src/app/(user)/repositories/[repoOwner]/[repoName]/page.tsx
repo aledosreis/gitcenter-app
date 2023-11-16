@@ -24,6 +24,8 @@ import {
 	UnlockIcon,
 } from 'lucide-react'
 import Link from 'next/link'
+import Markdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 export default async function RepositoryPage({
 	params: { repoOwner, repoName },
@@ -151,10 +153,13 @@ export default async function RepositoryPage({
 
 			<Separator />
 
+			{/* Readme */}
 			<div className='bg-zinc-900 w-full py-2 px-4'>
 				{/* @TODO: Show README.md from this repository if exists */}
 				{readme.content ? (
-					atob(readme.content)
+					<Markdown remarkPlugins={[remarkGfm]}>
+						{atob(readme.content)}
+					</Markdown>
 				) : (
 					<span className='block text-center text-lg font-semibold py-2'>
 						No readme file found
@@ -164,6 +169,7 @@ export default async function RepositoryPage({
 
 			<Separator />
 
+			{/* Collaborators */}
 			<div className='flex flex-col gap-3 bg-zinc-900 w-full py-2 px-4'>
 				<span className='self-start text-lg font-semibold capitalize'>
 					Collaborators
