@@ -6,9 +6,13 @@ This is a Full Stack application built to easily manage your Github repositories
 
 - Login with Github
 - List all User Repositories
-- List all issues and Pull Requests from repositories
 - Show last commit from repositories
+- List all issues and Pull Requests from repositories
 - List commits from repositories
+
+## Future features
+
+- List issues and Pull Requests comments
 - Allow users to comment issues and Pull Requests
 - Allow users to close or reopen issues
 - Allow users to create new issues
