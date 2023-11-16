@@ -153,7 +153,13 @@ export default async function RepositoryPage({
 
 			<div className='bg-zinc-900 w-full py-2 px-4'>
 				{/* @TODO: Show README.md from this repository if exists */}
-				{atob(readme.content)}
+				{readme.content ? (
+					atob(readme.content)
+				) : (
+					<span className='block text-center text-lg font-semibold py-2'>
+						No readme file found
+					</span>
+				)}
 			</div>
 
 			<Separator />
