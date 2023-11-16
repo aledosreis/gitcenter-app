@@ -24,15 +24,15 @@ import {
 import Link from 'next/link'
 
 export default async function RepositoryPage({
-	params,
+	params: { repoOwner, repoName },
 }: {
 	params: { repoOwner: string; repoName: string }
 }) {
-	const repoData = await getRepositoryData(params.repoOwner, params.repoName)
-	const commits = await getRepositoryCommits(params.repoOwner, params.repoName)
+	const repoData = await getRepositoryData(repoOwner, repoName)
+	const commits = await getRepositoryCommits(repoOwner, repoName)
 	const { commit, author } = commits.at(0)!
 
-	const readme = await getRepositoryReadme(params.repoOwner, params.repoName)
+	const readme = await getRepositoryReadme(repoOwner, repoName)
 
 	return (
 		<div className='flex flex-col gap-5 px-1'>
