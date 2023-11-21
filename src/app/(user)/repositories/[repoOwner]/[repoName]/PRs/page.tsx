@@ -1,7 +1,7 @@
 import { auth } from '@/auth'
 import { Forbidden } from '@/components/Forbidden'
+import PullRequestList from '@/components/PullRequestList'
 import { Separator } from '@/components/Separator'
-import { formatDate } from '@/utils/date'
 import { getRepositoryIssuesAndPRs } from '@/utils/fetch'
 import { ArrowLeftIcon, GitPullRequestIcon } from 'lucide-react'
 import Link from 'next/link'
@@ -49,36 +49,8 @@ export default async function RepositoryPRsPage({
 
 			<Separator />
 
-			{/* Commits list */}
-			<div className='flex flex-col gap-1'>
-				{pulls.map((pull) => (
-					<div
-						key={pull.id}
-						className='w-full border border-zinc-600 px-3 py-2 bg-zinc-900 flex justify-between items-center'>
-						<div className='flex gap-2'>
-							<GitPullRequestIcon
-								className={
-									pull.state === 'closed' ? 'text-red-600' : 'text-green-600'
-								}
-							/>
-							<span>{pull.title}</span>
-							<span
-								className={`px-3 rounded-xl ${
-									pull.state === 'closed' ? 'bg-red-600' : 'bg-green-600'
-								}`}>
-								{pull.state}
-							</span>
-						</div>
-						<span className='text-sm text-zinc-300'>
-							{pull.state === 'closed'
-								? `Closed at ${formatDate(pull.closed_at!)}`
-								: `Created by ${pull.user.login} at ${formatDate(
-										pull.created_at
-								  )}`}
-						</span>
-					</div>
-				))}
-			</div>
+			{/* PRs list */}
+			<PullRequestList pulls={pulls} />
 		</div>
 	)
 }
