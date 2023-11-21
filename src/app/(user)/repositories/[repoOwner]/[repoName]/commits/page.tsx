@@ -1,11 +1,11 @@
 import { auth } from '@/auth'
+import { Forbidden } from '@/components/Forbidden'
 import { Separator } from '@/components/Separator'
 import { formatDate } from '@/utils/date'
 import { getRepositoryCommits } from '@/utils/fetch'
 import {
 	ArrowLeftIcon,
 	GitCommitHorizontalIcon,
-	GithubIcon,
 	HistoryIcon,
 } from 'lucide-react'
 import Link from 'next/link'
@@ -26,22 +26,7 @@ export default async function RepositoryCommitsPage({
 
 	if (repoOwner !== login) {
 		return (
-			<div className='w-full justify-center items-center -my-4 h-screen gap-4'>
-				<div className='flex h-full items-center justify-center'>
-					<GithubIcon
-						size={500}
-						className='opacity-25'
-					/>
-					<div className='flex flex-col gap-3'>
-						<h1 className='text-3xl font-bold'>
-							You can not see commits from repositories you do not own.
-						</h1>
-						<p className='text-zinc-300 text-xl'>
-							Please go to your repositories using Repositories menu
-						</p>
-					</div>
-				</div>
-			</div>
+			<Forbidden title='You can not see commits from repositories you do not own.' />
 		)
 	}
 
