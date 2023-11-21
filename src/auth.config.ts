@@ -8,9 +8,12 @@ export const authConfig = {
 			const isOnApp =
 				nextUrl.pathname.startsWith('/dashboard') ||
 				nextUrl.pathname.startsWith('/repositories')
+
 			if (isOnApp) {
 				if (isLoggedIn) return true
 				return Response.redirect(new URL('/', nextUrl))
+			} else {
+				if (isLoggedIn) return Response.redirect(new URL('/dashboard', nextUrl))
 			}
 			return true
 		},

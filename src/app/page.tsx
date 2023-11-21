@@ -1,10 +1,7 @@
-import { auth } from '@/auth'
 import { GithubButton } from '@/components/GithubButton'
-import { GoToDashboardButton } from '@/components/GoToDashboardButton'
 import { GithubIcon } from 'lucide-react'
 
 export default async function Home() {
-	const session = await auth()
 	return (
 		<main className='flex min-h-screen flex-col w-full'>
 			{/* Icon will act as background image for the page */}
@@ -15,7 +12,7 @@ export default async function Home() {
 				<h2 className='text-lg font-bold'>Git Center</h2>
 
 				<div className='flex gap-3'>
-					{session ? <GoToDashboardButton /> : <GithubButton />}
+					<GithubButton />
 				</div>
 			</div>
 
@@ -29,7 +26,7 @@ export default async function Home() {
 				</div>
 
 				<div className='flex items-center justify-center'>
-					{session ? <GoToDashboardButton /> : <GithubButton />}
+					<GithubButton />
 				</div>
 			</div>
 		</main>
