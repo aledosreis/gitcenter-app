@@ -143,7 +143,6 @@ export default async function RepositoryPage({
 				{/* Issues, PRs, Branch and Clone button */}
 				<div className='flex gap-10 items-center'>
 					<div className='flex gap-2'>
-						{/* @TODO: Put issues and PR's count */}
 						<Link
 							className='flex gap-2 bg-zinc-800 px-2 py-1 rounded-md'
 							href={`/repositories/${repoData.full_name}/issues`}>
