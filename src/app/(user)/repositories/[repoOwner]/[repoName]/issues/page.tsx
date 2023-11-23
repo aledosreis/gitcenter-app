@@ -30,6 +30,8 @@ export default async function RepositoryIssuesPage({
 		(issue) => !issue.pull_request
 	)
 
+	const NEW_ISSUE_URL = `https://github.com/${repoOwner}/${repoName}/issues/new`
+
 	return (
 		<div className='flex flex-col w-full gap-5 px-1'>
 			{/* Header */}
@@ -50,7 +52,10 @@ export default async function RepositoryIssuesPage({
 			<Separator />
 
 			{/* Issues list */}
-			<IssueList issues={issues} />
+			<IssueList
+				issues={issues}
+				newIssueURL={NEW_ISSUE_URL}
+			/>
 		</div>
 	)
 }

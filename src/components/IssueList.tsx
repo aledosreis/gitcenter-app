@@ -7,24 +7,38 @@ import { CircleDotIcon } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
 
-export function IssueList({ issues }: { issues: RepositoryIssueResponse[] }) {
+export function IssueList({
+	issues,
+	newIssueURL,
+}: {
+	issues: RepositoryIssueResponse[]
+	newIssueURL: string
+}) {
 	const [state, setState] = useState<'open' | 'closed' | 'all'>('open')
 	const status: (typeof state)[] = ['open', 'closed', 'all']
 
 	return (
 		<div className='flex flex-col gap-5'>
 			{/* buttons */}
-			<div className='flex gap-4 px-5'>
-				{status.map((stat) => (
-					<button
-						onClick={(e) => setState(stat)}
-						className={clsx('px-3 py-2 rounded-full uppercase border-2', {
-							'border-violet-600': stat === state,
-						})}
-						key={stat}>
-						{stat}
-					</button>
-				))}
+			<div className='flex justify-between'>
+				<div className='flex gap-4 px-5'>
+					{status.map((stat) => (
+						<button
+							onClick={(e) => setState(stat)}
+							className={clsx('px-3 py-2 rounded-full uppercase border-2', {
+								'border-violet-600': stat === state,
+							})}
+							key={stat}>
+							{stat}
+						</button>
+					))}
+				</div>
+				<Link
+					href={newIssueURL}
+					target='_blank'
+					className='px-3 py-2 rounded-md bg-violet-600 flex items-center mx-5'>
+					New Issue
+				</Link>
 			</div>
 			{/* list */}
 			<div className='flex flex-col gap-1'>
