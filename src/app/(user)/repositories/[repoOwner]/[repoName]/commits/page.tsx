@@ -52,8 +52,10 @@ export default async function RepositoryCommitsPage({
 
 			{/* Commits list */}
 			<div className='flex flex-col gap-1'>
-				{commits.map(({ sha, commit, author }) => (
-					<div
+				{commits.map(({ sha, commit, author, html_url }) => (
+					<Link
+						href={html_url}
+						target='_blank'
 						key={sha}
 						className='w-full border border-zinc-600 px-3 py-2 bg-zinc-900 flex justify-between items-center'>
 						<div className='flex gap-2'>
@@ -64,7 +66,7 @@ export default async function RepositoryCommitsPage({
 							Committed by {author?.login || commit.author.name} at{' '}
 							{formatDate(commit.author.date)}
 						</span>
-					</div>
+					</Link>
 				))}
 			</div>
 		</div>
