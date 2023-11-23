@@ -69,40 +69,40 @@ export default async function RepositoryPage({
 	return (
 		<div className='flex flex-col gap-5 px-1'>
 			{/* Header */}
-			<div className='flex flex-col bg-zinc-900 p-3 rounded-md gap-3'>
+			<div className='flex flex-col bg-card p-3 rounded-md gap-3'>
 				{/* Repository Info */}
 				<div className='flex items-center justify-between'>
-					<div className='flex flex-col gap-1 bg-zinc-800 p-2 rounded-md'>
-						<h1 className='flex gap-2 font-bold text-lg'>
+					<div className='flex flex-col gap-1 bg-foreground p-2 rounded-md'>
+						<h1 className='flex gap-2 font-bold text-lg text-hover'>
 							{repoData.visibility === 'public' ? (
-								<UnlockIcon className='text-violet-600' />
+								<UnlockIcon className='text-open' />
 							) : (
-								<LockIcon className='text-violet-600' />
+								<LockIcon className='text-closed' />
 							)}
 							{repoData.full_name}
 						</h1>
 						{repoData.fork && repoData.parent && (
-							<p className='font-light text-sm text-zinc-300'>
+							<p className='font-light text-sm text-light'>
 								Forked from: {repoData.parent.full_name}
 							</p>
 						)}
 					</div>
 
 					<div className='grid grid-cols-2 gap-2 2xl:flex 2xl:gap-5'>
-						<div className='flex gap-2 items-center bg-zinc-800 p-2 rounded-md'>
-							<EyeIcon className='text-violet-600' />
+						<div className='flex gap-2 items-center bg-foreground p-2 rounded-md'>
+							<EyeIcon className='text-primary' />
 							{repoData.subscribers_count} watchers
 						</div>
-						<div className='flex gap-2 items-center bg-zinc-800 p-2 rounded-md'>
-							<GitForkIcon className='text-violet-600' />
+						<div className='flex gap-2 items-center bg-foreground p-2 rounded-md'>
+							<GitForkIcon className='text-primary' />
 							{repoData.forks} forks
 						</div>
-						<div className='flex gap-2 items-center bg-zinc-800 p-2 rounded-md'>
-							<StarIcon className='text-violet-600' />
+						<div className='flex gap-2 items-center bg-foreground p-2 rounded-md'>
+							<StarIcon className='text-primary' />
 							{repoData.watchers} starts
 						</div>
-						<div className='flex gap-2 items-center bg-zinc-800 p-2 rounded-md'>
-							<Code2Icon className='text-violet-600' />
+						<div className='flex gap-2 items-center bg-foreground p-2 rounded-md'>
+							<Code2Icon className='text-primary' />
 							Language: {repoData.language || 'None'}
 						</div>
 					</div>
@@ -117,7 +117,7 @@ export default async function RepositoryPage({
 				</div>
 
 				{/* Repo Description */}
-				<span className='text-zinc-300 italic w-full'>
+				<span className='text-light italic w-full'>
 					{repoData.description || "This repository hasn't any description."}
 				</span>
 			</div>
@@ -125,10 +125,10 @@ export default async function RepositoryPage({
 			<Separator />
 
 			{/* Website section */}
-			<div className='flex justify-between py-2 px-4 rounded-md bg-zinc-900 items-center'>
+			<div className='flex justify-between py-2 px-4 rounded-md bg-card items-center'>
 				{/* Website */}
 				<div className='flex gap-2'>
-					<GlobeIcon className='text-violet-600' />
+					<GlobeIcon className='text-primary' />
 					{repoData.homepage ? (
 						<Link
 							target='_blank'
@@ -144,19 +144,19 @@ export default async function RepositoryPage({
 				<div className='flex gap-10 items-center'>
 					<div className='flex gap-2'>
 						<Link
-							className='flex gap-2 bg-zinc-800 px-2 py-1 rounded-md'
+							className='flex gap-2 bg-foreground px-2 py-1 rounded-md'
 							href={`/repositories/${repoData.full_name}/issues`}>
-							<CircleDotIcon className='text-green-600' /> {openIssuesCount}{' '}
-							open issues
+							<CircleDotIcon className='text-open' /> {openIssuesCount} open
+							issues
 						</Link>
 						<Link
-							className='flex gap-2 bg-zinc-800 px-2 py-1 rounded-md'
+							className='flex gap-2 bg-foreground px-2 py-1 rounded-md'
 							href={`/repositories/${repoData.full_name}/PRs`}>
-							<GitPullRequestIcon className='text-green-600' /> {openPRsCount}{' '}
-							open PRs
+							<GitPullRequestIcon className='text-open' /> {openPRsCount} open
+							PRs
 						</Link>
-						<span className='flex gap-2 bg-zinc-800 px-2 py-1 rounded-md'>
-							<GitBranchIcon className='text-violet-600' /> Branch:{' '}
+						<span className='flex gap-2 bg-foreground px-2 py-1 rounded-md'>
+							<GitBranchIcon className='text-primary' /> Branch:{' '}
 							{repoData.default_branch}
 						</span>
 					</div>
@@ -167,18 +167,18 @@ export default async function RepositoryPage({
 			<Separator />
 
 			{/* Last commit */}
-			<div className='flex justify-between rounded-md bg-zinc-900 py-2 px-4'>
+			<div className='flex justify-between rounded-md bg-card py-2 px-4'>
 				<div className='flex gap-1'>
-					<GitCommitHorizontalIcon className='text-violet-600' />
+					<GitCommitHorizontalIcon className='text-primary' />
 					<span className='font-semibold'>Last commit:</span>
-					<span className='text-zinc-300 italic'>{commit.message}</span>
+					<span className='text-light italic'>{commit.message}</span>
 					<span> - by {author?.login || commit.author.name} at</span>
 					<span className='italic'>{formatDate(commit.author.date)}</span>
 				</div>
 				<Link
 					href={`/repositories/${repoData.full_name}/commits`}
 					className='flex gap-2'>
-					<HistoryIcon className='text-violet-600' />
+					<HistoryIcon className='text-primary' />
 					<span>{commits.length} commits</span>
 				</Link>
 			</div>
@@ -186,7 +186,7 @@ export default async function RepositoryPage({
 			<Separator />
 
 			{/* Readme */}
-			<div className='bg-zinc-900 w-full py-2 px-4'>
+			<div className='bg-card rounded-md w-full py-2 px-4'>
 				{/* @TODO: Show README.md from this repository if exists */}
 				{readme.content ? (
 					<Markdown remarkPlugins={[remarkGfm]}>
@@ -202,7 +202,7 @@ export default async function RepositoryPage({
 			<Separator />
 
 			{/* Collaborators */}
-			<div className='flex flex-col gap-3 bg-zinc-900 w-full py-2 px-4'>
+			<div className='flex flex-col gap-3 bg-card w-full py-2 px-4'>
 				<span className='self-start text-lg font-semibold capitalize'>
 					Collaborators
 				</span>
@@ -216,7 +216,7 @@ export default async function RepositoryPage({
 							/>
 						))
 					) : (
-						<span className='text-zinc-300 w-full text-center pb-2'>
+						<span className='text-light w-full text-center pb-2'>
 							Could not find repository collaborators.
 						</span>
 					)}

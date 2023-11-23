@@ -9,7 +9,7 @@ export function FollowsCard({
 	type: 'followers' | 'following'
 }) {
 	return (
-		<div className='flex flex-col gap-3 items-center bg-zinc-800 rounded-md p-3 flex-1'>
+		<div className='flex flex-col gap-3 items-center bg-foreground rounded-md p-3 flex-1'>
 			<span className='self-start text-lg font-semibold capitalize'>
 				{type}{' '}
 			</span>
@@ -23,7 +23,7 @@ export function FollowsCard({
 						/>
 					))
 				) : (
-					<span className='italic text-zinc-500'>No {type} found</span>
+					<span className='italic text-light'>No {type} found</span>
 				)}
 			</div>
 		</div>

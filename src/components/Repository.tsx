@@ -22,17 +22,17 @@ export async function Repository({ repository }: { repository: RepoResponse }) {
 	return (
 		<Link
 			href={`/repositories/${repository.full_name}`}
-			className='flex items-center justify-between bg-zinc-900 border border-zinc-600 py-2 px-4 mx-5'>
+			className='flex items-center justify-between bg-card border border-separator py-2 px-4 mx-5'>
 			<div className='flex gap-3 items-center'>
 				{repository.visibility === 'public' ? (
-					<UnlockIcon className='text-green-600' />
+					<UnlockIcon className='text-open' />
 				) : (
-					<LockIcon className='text-red-600' />
+					<LockIcon className='text-closed' />
 				)}
 				<div className='flex flex-col w-96'>
 					<span className='font-semibold'>{repository.name}</span>
 					<span
-						className='font-light text-zinc-400 truncate'
+						className='font-light text-light truncate'
 						title={repository.description}>
 						{repository.description ||
 							"This repository hasn't any description."}
@@ -41,7 +41,7 @@ export async function Repository({ repository }: { repository: RepoResponse }) {
 			</div>
 
 			<span
-				className='font-light text-zinc-400 text-start flex-1 px-10 truncate max-w-lg'
+				className='font-light text-light text-start flex-1 px-10 truncate max-w-lg'
 				title={commitMessage}>
 				{commitMessage || 'No commit found'}
 			</span>
@@ -50,7 +50,7 @@ export async function Repository({ repository }: { repository: RepoResponse }) {
 				<span className='italic'>
 					Last updated: {formatDate(repository.pushed_at)}
 				</span>
-				<span className='font-light italic text-zinc-400'>
+				<span className='font-light italic text-light'>
 					Language: {repository.language || 'None'}
 				</span>
 			</div>

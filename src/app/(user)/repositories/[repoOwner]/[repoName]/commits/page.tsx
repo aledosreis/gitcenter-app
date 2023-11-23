@@ -34,9 +34,9 @@ export default async function RepositoryCommitsPage({
 	return (
 		<div className='flex flex-col w-full gap-5 px-1'>
 			{/* Header */}
-			<div className='bg-zinc-900 px-3 py-1 rounded-md flex justify-between items-center'>
+			<div className='bg-card px-3 py-1 rounded-md flex justify-between items-center'>
 				<h1 className='text-2xl flex gap-2 items-center'>
-					<HistoryIcon className='text-violet-600' />
+					<HistoryIcon className='text-primary' />
 					Commit history from {repoOwner}/{repoName}
 				</h1>
 
@@ -57,12 +57,12 @@ export default async function RepositoryCommitsPage({
 						href={html_url}
 						target='_blank'
 						key={sha}
-						className='w-full border border-zinc-600 px-3 py-2 bg-zinc-900 flex justify-between items-center'>
+						className='w-full border border-separator px-3 py-2 bg-card flex justify-between items-center'>
 						<div className='flex gap-2'>
-							<GitCommitHorizontalIcon className='text-violet-600' />
+							<GitCommitHorizontalIcon className='text-primary' />
 							<span>{commit.message}</span>
 						</div>
-						<span className='text-sm text-zinc-300'>
+						<span className='text-sm text-light'>
 							Committed by {author?.login || commit.author.name} at{' '}
 							{formatDate(commit.author.date)}
 						</span>

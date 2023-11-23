@@ -35,9 +35,9 @@ export default async function RepositoryIssuesPage({
 	return (
 		<div className='flex flex-col w-full gap-5 px-1'>
 			{/* Header */}
-			<div className='bg-zinc-900 px-3 py-1 rounded-md flex justify-between items-center'>
+			<div className='bg-card px-3 py-1 rounded-md flex justify-between items-center'>
 				<h1 className='text-2xl flex gap-2 items-center'>
-					<CircleDotIcon className='text-violet-600' />
+					<CircleDotIcon className='text-open' />
 					Issues from {repoOwner}/{repoName}
 				</h1>
 

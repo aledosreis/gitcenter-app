@@ -16,7 +16,7 @@ export function Forbidden({
 				/>
 				<div className='flex flex-col gap-3'>
 					<h1 className='text-3xl font-bold'>{title}</h1>
-					<p className='text-zinc-300 text-xl'>{subtitle}</p>
+					<p className='text-light text-xl'>{subtitle}</p>
 				</div>
 			</div>
 		</div>

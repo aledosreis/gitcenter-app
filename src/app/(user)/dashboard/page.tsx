@@ -27,59 +27,59 @@ export default async function DashboardPage() {
 	return (
 		<div className='w-full flex flex-col gap-5 px-1'>
 			{/* Header */}
-			<div className='flex flex-col bg-zinc-900 p-3 gap-3 rounded-md'>
+			<div className='flex flex-col bg-card p-3 gap-3 rounded-md'>
 				<div className='flex w-full justify-between items-center'>
 					{/* User Details */}
-					<div className='flex gap-2 items-center bg-zinc-800 rounded-md p-2'>
+					<div className='flex gap-2 items-center bg-foreground rounded-md p-2'>
 						<Avatar user={profile} />
 
 						<div className='flex flex-col'>
 							<h2 className='text-xl font-extrabold'>
-								Hello, <span className='text-violet-500'>{user.name}</span>
+								Hello, <span className='text-hover'>{user.name}</span>
 							</h2>
-							<span className='text-zinc-300 text-lg'>@{profile.login}</span>
+							<span className='text-light text-lg'>@{profile.login}</span>
 						</div>
 					</div>
 
 					{/* User Contact */}
-					<div className='grid grid-cols-2 gap-y-2 bg-zinc-800 rounded-md p-2'>
+					<div className='grid grid-cols-2 gap-y-2 bg-foreground rounded-md p-2'>
 						<div
 							className='flex gap-1'
 							title='Company'>
-							<BuildingIcon className='text-violet-600' />
-							<span className='text-zinc-300'>
+							<BuildingIcon className='text-primary' />
+							<span className='text-light'>
 								{profile.company || 'Not registered'}
 							</span>
 						</div>
 						<div
 							className='flex gap-1'
 							title='Email'>
-							<MailIcon className='text-violet-600' />
-							<span className='text-zinc-300'>
+							<MailIcon className='text-primary' />
+							<span className='text-light'>
 								{user.email || 'Not registered'}
 							</span>
 						</div>
 						<div
 							className='flex gap-1'
 							title='Location'>
-							<MapPinIcon className='text-violet-600' />
-							<span className='text-zinc-300'>
+							<MapPinIcon className='text-primary' />
+							<span className='text-light'>
 								{profile.location || 'Not registered'}
 							</span>
 						</div>
 						<div
 							className='flex gap-1'
 							title='Blog'>
-							<LinkIcon className='text-violet-600' />
+							<LinkIcon className='text-primary' />
 							{profile.blog ? (
 								<Link
 									href={profile.blog}
 									target='_blank'
-									className='text-zinc-300'>
+									className='text-light'>
 									{profile.blog}
 								</Link>
 							) : (
-								<span className='text-zinc-300'>
+								<span className='text-light'>
 									{profile.blog || 'Not registered'}
 								</span>
 							)}
@@ -95,7 +95,7 @@ export default async function DashboardPage() {
 					</Link>
 				</div>
 
-				<span className='text-zinc-300 italic w-full'>
+				<span className='text-light italic w-full'>
 					{profile.bio || "You didn't wrote nothing in your Github profile bio"}
 				</span>
 			</div>
@@ -103,33 +103,31 @@ export default async function DashboardPage() {
 			<Separator />
 
 			{/* User Git Stats */}
-			<div className='flex justify-around bg-zinc-900 rounded-md p-2'>
+			<div className='flex justify-around bg-card rounded-md p-2'>
 				<div className='flex gap-1'>
-					<BookMarkedIcon className='text-violet-600' />
-					<span className='text-zinc-300'>
+					<BookMarkedIcon className='text-primary' />
+					<span className='text-light'>
 						{profile.public_repos} public repos
 					</span>
 				</div>
 				<div className='flex gap-1'>
-					<Users2Icon className='text-violet-600' />
-					<span className='text-zinc-300'>{profile.followers} followers</span>
+					<Users2Icon className='text-primary' />
+					<span className='text-light'>{profile.followers} followers</span>
 				</div>
 				<div className='flex gap-1'>
-					<SquareCodeIcon className='text-violet-600' />
-					<span className='text-zinc-300'>
-						{profile.public_gists} pubic gists
-					</span>
+					<SquareCodeIcon className='text-primary' />
+					<span className='text-light'>{profile.public_gists} pubic gists</span>
 				</div>
 				<div className='flex gap-1'>
-					<Users2Icon className='text-violet-600' />
-					<span className='text-zinc-300'>{profile.following} following</span>
+					<Users2Icon className='text-primary' />
+					<span className='text-light'>{profile.following} following</span>
 				</div>
 			</div>
 
 			<Separator />
 
 			{/* Cards */}
-			<div className='w-full bg-zinc-900 p-5 rounded-md flex gap-5'>
+			<div className='w-full bg-card p-5 rounded-md flex gap-5'>
 				{/* Followers Card */}
 				<FollowsCard
 					type='followers'

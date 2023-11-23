@@ -19,10 +19,10 @@ export function SidebarLinks() {
 				return (
 					<Link
 						key={link.path}
-						className={clsx('flex gap-2  py-1 px-3 rounded-md items-center', {
-							'bg-violet-600 hover:bg-violet-500':
+						className={clsx('flex gap-2 py-1 px-3 rounded-md items-center', {
+							'bg-primary hover:bg-hover':
 								link.path === pathname || pathname.startsWith(link.path),
-							'hover:bg-zinc-800':
+							'hover:bg-foreground':
 								link.path !== pathname && !pathname.startsWith(link.path),
 						})}
 						href={link.path}>

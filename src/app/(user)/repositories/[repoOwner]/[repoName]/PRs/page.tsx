@@ -33,9 +33,9 @@ export default async function RepositoryPRsPage({
 	return (
 		<div className='flex flex-col w-full gap-5 px-1'>
 			{/* Header */}
-			<div className='bg-zinc-900 px-3 py-1 rounded-md flex justify-between items-center'>
+			<div className='bg-card px-3 py-1 rounded-md flex justify-between items-center'>
 				<h1 className='text-2xl flex gap-2 items-center'>
-					<GitPullRequestIcon className='text-violet-600' />
+					<GitPullRequestIcon className='text-open' />
 					Pull Requests from {repoOwner}/{repoName}
 				</h1>
 

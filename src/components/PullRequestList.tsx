@@ -23,7 +23,7 @@ export default function PullRequestList({
 					<button
 						onClick={(e) => setState(stat)}
 						className={clsx('px-3 py-2 rounded-full uppercase border-2', {
-							'border-violet-600': stat === state,
+							'border-primary': stat === state,
 						})}
 						key={stat}>
 						{stat}
@@ -39,22 +39,22 @@ export default function PullRequestList({
 							href={pull.html_url}
 							target='_blank'
 							key={pull.id}
-							className='w-full border border-zinc-600 px-3 py-2 bg-zinc-900 flex justify-between items-center'>
+							className='w-full border border-separator px-3 py-2 bg-card flex justify-between items-center'>
 							<div className='flex gap-2'>
 								<GitPullRequestIcon
 									className={
-										pull.state === 'closed' ? 'text-red-600' : 'text-green-600'
+										pull.state === 'closed' ? 'text-closed' : 'text-open'
 									}
 								/>
 								<span>{pull.title}</span>
 								<span
 									className={`px-3 rounded-xl ${
-										pull.state === 'closed' ? 'bg-red-600' : 'bg-green-600'
+										pull.state === 'closed' ? 'bg-closed' : 'bg-open'
 									}`}>
 									{pull.state}
 								</span>
 							</div>
-							<span className='text-sm text-zinc-300'>
+							<span className='text-sm text-light'>
 								{pull.state === 'closed'
 									? `Closed at ${formatDate(pull.closed_at!)}`
 									: `Created by ${pull.user.login} at ${formatDate(
