@@ -4,6 +4,7 @@ import { RepositoryIssueResponse } from '@/@types/github'
 import { formatDate } from '@/utils/date'
 import clsx from 'clsx'
 import { GitPullRequestIcon } from 'lucide-react'
+import Link from 'next/link'
 import { useState } from 'react'
 
 export default function PullRequestList({
@@ -34,7 +35,9 @@ export default function PullRequestList({
 				{pulls
 					.filter((pull) => pull.state === state || state === 'all')
 					.map((pull) => (
-						<div
+						<Link
+							href={pull.html_url}
+							target='_blank'
 							key={pull.id}
 							className='w-full border border-zinc-600 px-3 py-2 bg-zinc-900 flex justify-between items-center'>
 							<div className='flex gap-2'>
@@ -58,7 +61,7 @@ export default function PullRequestList({
 											pull.created_at
 									  )}`}
 							</span>
-						</div>
+						</Link>
 					))}
 			</div>
 		</div>
