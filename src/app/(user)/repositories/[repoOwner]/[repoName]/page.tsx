@@ -8,6 +8,7 @@ import {
 	getRepositoryCollaborators,
 	getRepositoryCommits,
 	getRepositoryData,
+	getRepositoryIssuesAndPRs,
 	getRepositoryReadme,
 } from '@/utils/fetch'
 import {
@@ -48,12 +49,22 @@ export default async function RepositoryPage({
 	}
 
 	const repoData = await getRepositoryData(repoOwner, repoName)
+
+	const issuesAndPr = await getRepositoryIssuesAndPRs(repoOwner, repoName)
+	const openIssuesCount = issuesAndPr.filter(
+		(issue) => issue.state === 'open' && !issue.pull_request
+	).length
+	const openPRsCount = issuesAndPr.filter(
+		(pr) => pr.state === 'open' && pr.pull_request
+	).length
+
 	const commits = await getRepositoryCommits(repoOwner, repoName)
 	const { commit, author } = commits.at(0)!
 
 	const readme = await getRepositoryReadme(repoOwner, repoName)
 
 	const collaborators = await getRepositoryCollaborators(repoOwner, repoName)
+	console.log(collaborators)
 
 	return (
 		<div className='flex flex-col gap-5 px-1'>
@@ -136,12 +147,14 @@ export default async function RepositoryPage({
 						<Link
 							className='flex gap-2 bg-zinc-800 px-2 py-1 rounded-md'
 							href={`/repositories/${repoData.full_name}/issues`}>
-							<CircleDotIcon className='text-green-600' /> 0 open issues
+							<CircleDotIcon className='text-green-600' /> {openIssuesCount}{' '}
+							open issues
 						</Link>
 						<Link
 							className='flex gap-2 bg-zinc-800 px-2 py-1 rounded-md'
 							href={`/repositories/${repoData.full_name}/PRs`}>
-							<GitPullRequestIcon className='text-green-600' /> 0 open PRs
+							<GitPullRequestIcon className='text-green-600' /> {openPRsCount}{' '}
+							open PRs
 						</Link>
 						<span className='flex gap-2 bg-zinc-800 px-2 py-1 rounded-md'>
 							<GitBranchIcon className='text-violet-600' /> Branch:{' '}
@@ -195,13 +208,19 @@ export default async function RepositoryPage({
 					Collaborators
 				</span>
 				<div className='flex -space-x-2 overflow-hidden'>
-					{collaborators.map((collaborator) => (
-						<Avatar
-							key={collaborator.login}
-							user={collaborator}
-							className='border'
-						/>
-					))}
+					{collaborators.length > 0 ? (
+						collaborators.map((collaborator) => (
+							<Avatar
+								key={collaborator.login}
+								user={collaborator}
+								className='border'
+							/>
+						))
+					) : (
+						<span className='text-zinc-300 w-full text-center pb-2'>
+							Could not find repository collaborators.
+						</span>
+					)}
 				</div>
 			</div>
 		</div>
