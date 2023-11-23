@@ -9,6 +9,7 @@ This is a Full Stack application built to easily manage your Github repositories
 - Show last commit from repositories
 - List all issues and Pull Requests from repositories
 - List commits from repositories
+- Show repository README
 
 ## Future features
 
