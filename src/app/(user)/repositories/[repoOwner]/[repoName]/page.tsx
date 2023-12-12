@@ -5,8 +5,8 @@ import { Forbidden } from '@/components/Forbidden'
 import { Separator } from '@/components/Separator'
 import { formatDate } from '@/utils/date'
 import {
-	getRepositoryCollaborators,
 	getRepositoryCommits,
+	getRepositoryContributors,
 	getRepositoryData,
 	getRepositoryIssuesAndPRs,
 	getRepositoryReadme,
@@ -63,8 +63,7 @@ export default async function RepositoryPage({
 
 	const readme = await getRepositoryReadme(repoOwner, repoName)
 
-	const collaborators = await getRepositoryCollaborators(repoOwner, repoName)
-	console.log(collaborators)
+	const contributors = await getRepositoryContributors(repoOwner, repoName)
 
 	return (
 		<div className='flex flex-col gap-5 px-1'>
@@ -204,11 +203,11 @@ export default async function RepositoryPage({
 			{/* Collaborators */}
 			<div className='flex flex-col gap-3 bg-card w-full py-2 px-4'>
 				<span className='self-start text-lg font-semibold capitalize'>
-					Collaborators
+					Contributtors
 				</span>
 				<div className='flex -space-x-2 overflow-hidden'>
-					{collaborators.length > 0 ? (
-						collaborators.map((collaborator) => (
+					{contributors.length > 0 ? (
+						contributors.map((collaborator) => (
 							<Avatar
 								key={collaborator.login}
 								user={collaborator}

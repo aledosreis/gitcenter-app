@@ -96,15 +96,15 @@ export async function getRepositoryReadme(
 }
 
 /**
- * Fetch repository's collaborators
+ * Fetch repository's contributors
  * @param owner owner of repository
  * @param repository name of repository
  */
-export async function getRepositoryCollaborators(
+export async function getRepositoryContributors(
 	owner: string,
 	repository: string
 ): Promise<UserResponse[]> {
-	const url = `${BASE_API_URL}repos/${owner}/${repository}/collaborators`
+	const url = `${BASE_API_URL}repos/${owner}/${repository}/contributors`
 	const response = await fetchData(url)
 	return response.json()
 }
