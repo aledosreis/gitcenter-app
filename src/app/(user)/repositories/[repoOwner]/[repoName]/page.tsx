@@ -28,6 +28,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import Markdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
 import remarkGfm from 'remark-gfm'
 
 export default async function RepositoryPage({
@@ -188,8 +189,10 @@ export default async function RepositoryPage({
 			<div className='bg-card rounded-md w-full py-2 px-4'>
 				{/* @TODO: Show README.md from this repository if exists */}
 				{readme.content ? (
-					<Markdown remarkPlugins={[remarkGfm]}>
-						{atob(readme.content)}
+					<Markdown
+						remarkPlugins={[remarkGfm]}
+						rehypePlugins={[rehypeRaw]}>
+						{Buffer.from(readme.content, 'base64').toString()}
 					</Markdown>
 				) : (
 					<span className='block text-center text-lg font-semibold py-2'>
